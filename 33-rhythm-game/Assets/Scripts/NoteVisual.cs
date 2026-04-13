@@ -1,0 +1,214 @@
+using UnityEngine;
+
+public class NoteVisual : MonoBehaviour
+{
+    // -------------------------------------------------------------------------
+    // Serialized Fields
+    // -------------------------------------------------------------------------
+
+    [Header("Visuals")]
+    [SerializeField] private Transform visualNote;
+    [SerializeField] private Color idleColor = Color.white;
+    [SerializeField] private Color hitColor = Color.cyan;
+    [SerializeField] private Color missColor = Color.red;
+
+    // -------------------------------------------------------------------------
+    // Public State
+    // -------------------------------------------------------------------------
+
+    // LaneController reads TargetDspTime to pass into RhythmManager.EvaluateHit
+    public double TargetDspTime { get; private set; }
+
+    // LaneController checks IsActive before accepting input for this note
+    public bool IsActive { get; private set; }
+
+    // -------------------------------------------------------------------------
+    // Private Timing State
+    // -------------------------------------------------------------------------
+
+    private double _approachStart; // dspTime when growth begins
+    private double _approachEnd;   // dspTime when growth completes (== TargetDspTime)
+
+    private bool _hasBeenJudged;
+
+    // -------------------------------------------------------------------------
+    // Private Visual State
+    // -------------------------------------------------------------------------
+
+    private SpriteRenderer _spriteRenderer;
+
+    // Pulse constants — kept exactly as in the original NoteController
+    private bool _isPulsing;
+    private float _pulseTimer;
+    private const float PulseDuration = 0.08f;
+    private const float PulseScalePeak = 1.25f;
+
+    // -------------------------------------------------------------------------
+    // Unity Lifecycle
+    // -------------------------------------------------------------------------
+
+    private void Awake()
+    {
+        if (visualNote != null)
+            _spriteRenderer = visualNote.GetComponent<SpriteRenderer>();
+
+        ResetVisuals();
+    }
+
+    private void Update()
+    {
+        if (!IsActive) return;
+
+        // dspTime is a double that the audio engine advances independently of
+        // the frame rate. We read it once per Update to keep all math in sync
+        // for this frame — avoiding any micro-drift from multiple reads.
+        double now = AudioSettings.dspTime;
+
+        HandleAutoMiss(now);
+        HandleScaleApproach(now);
+        HandlePulse();
+    }
+
+    // -------------------------------------------------------------------------
+    // Public API
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Arms this NoteVisual for an incoming note.
+    /// Call this from your NoteSpawner whenever a note
+    /// is scheduled for this lane.
+    /// </summary>
+    /// <param name="targetDspTime">
+    ///     The exact dspTime at which the note should be hit.
+    /// </param>
+    /// <param name="approachTime">
+    ///     How many seconds before targetDspTime the note starts growing.
+    ///     E.g. 2f means the star begins scaling up 2 seconds early.
+    /// </param>
+    public void InitializeNote(double targetDspTime, float approachTime)
+    {
+        TargetDspTime = targetDspTime;
+        _approachStart = targetDspTime - approachTime; // when growth begins
+        _approachEnd = targetDspTime;                // when growth completes (scale == 1)
+
+        IsActive = true;
+        _hasBeenJudged = false;
+
+        ApplyColor(idleColor);
+
+        // Start invisible; HandleScaleApproach will take over from here
+        visualNote.localScale = Vector3.zero;
+    }
+
+    /// <summary>
+    /// Called by LaneController with the grade resolved by RhythmManager.
+    /// Also called internally by HandleAutoMiss on a timed-out note.
+    /// </summary>
+    public void Judge(HitGrade grade)
+    {
+        if (_hasBeenJudged) return;
+
+        _hasBeenJudged = true;
+        IsActive = false;
+
+        switch (grade)
+        {
+            case HitGrade.Perfect:
+                Debug.Log($"[{gameObject.name}] PERFECT!");
+                ApplyColor(hitColor);
+                TriggerPulse();
+                break;
+
+            case HitGrade.Good:
+                Debug.Log($"[{gameObject.name}] Good");
+                ApplyColor(hitColor);
+                TriggerPulse();
+                break;
+
+            case HitGrade.Miss:
+                Debug.Log($"[{gameObject.name}] Miss");
+                ApplyColor(missColor);
+                ResetVisuals();
+                break;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Core Visual Logic
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Grows the star from 0.1 → 1.0 as dspTime travels from _approachStart
+    /// to _targetDspTime.
+    /// </summary>
+    private void HandleScaleApproach(double now)
+    {
+        if (_hasBeenJudged || _isPulsing) return;
+
+        // Cast to float only for the Lerp — all timing comparisons stay double
+        double windowDuration = _approachEnd - _approachStart;
+        double elapsed = now - _approachStart;
+
+        float t = Mathf.Clamp01((float)(elapsed / windowDuration));
+        float scale = Mathf.Lerp(0.1f, 1.0f, t);
+
+        visualNote.localScale = new Vector3(scale, scale, 1f);
+    }
+
+    /// <summary>
+    /// Auto-miss: if the beat has passed beyond the good window and the
+    /// player never pressed the key, clean up and count it as a miss.
+    /// </summary>
+    private void HandleAutoMiss(double now)
+    {
+        if (_hasBeenJudged) return;
+        if (now > TargetDspTime + RhythmManager.Instance.GoodWindow)
+            Judge(HitGrade.Miss);
+    }
+
+    /// <summary>
+    /// Decays the pulse scale back to zero after PulseDuration seconds.
+    /// Kept out of HandleScaleApproach so the two never fight over localScale.
+    /// </summary>
+    private void HandlePulse()
+    {
+        if (!_isPulsing) return;
+
+        _pulseTimer += Time.deltaTime;
+        float t = Mathf.Clamp01(_pulseTimer / PulseDuration);
+        float scale = Mathf.Lerp(PulseScalePeak, 0f, t);
+
+        visualNote.localScale = new Vector3(scale, scale, 1f);
+
+        if (t >= 1f)
+        {
+            _isPulsing = false;
+            visualNote.localScale = Vector3.zero;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
+
+    private void TriggerPulse()
+    {
+        _isPulsing = true;
+        _pulseTimer = 0f;
+        visualNote.localScale = new Vector3(PulseScalePeak, PulseScalePeak, 1f);
+    }
+
+    private void ApplyColor(Color color)
+    {
+        if (_spriteRenderer != null)
+            _spriteRenderer.color = color;
+    }
+
+    private void ResetVisuals()
+    {
+        if (visualNote != null)
+            visualNote.localScale = Vector3.zero;
+
+        ApplyColor(idleColor);
+    }
+}
