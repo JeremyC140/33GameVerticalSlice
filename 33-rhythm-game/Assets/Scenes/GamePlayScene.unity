@@ -177,12 +177,59 @@ Transform:
   m_GameObject: {fileID: 63754072}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1622850043}
   m_Father: {fileID: 1738114044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &255451490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255451492}
+  - component: {fileID: 255451491}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &255451491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255451490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddc8ca2b3a863b4aa3a2a3cdce0c976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleTestSpawner
+  spacebarLane: {fileID: 995553852}
+  notePrefab: {fileID: 2742994987808656461, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
+  approachTime: 1.5
+--- !u!4 &255451492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255451490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264403124
 GameObject:
@@ -195,7 +242,7 @@ GameObject:
   - component: {fileID: 264403125}
   - component: {fileID: 264403126}
   m_Layer: 0
-  m_Name: NoteBody_V
+  m_Name: LaneBody_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +257,7 @@ Transform:
   m_GameObject: {fileID: 264403124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321,18 +368,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92e9ca0bed299b489c0850b58d13593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatternGenerator
-  centerStar: {fileID: 624433956}
+  centerStar: {fileID: 995553851}
   leftColumnStars:
-  - {fileID: 525795406}
-  - {fileID: 1622850043}
-  - {fileID: 264403125}
+  - {fileID: 665669058}
+  - {fileID: 63754073}
+  - {fileID: 1381598500}
   rightColumnStars:
-  - {fileID: 1758991343}
-  - {fileID: 1933706038}
-  - {fileID: 1338819831}
-  horizontalSeparation: 3
-  verticalSpacing: 2
-  columnTiltOffset: 0.5
+  - {fileID: 1977387100}
+  - {fileID: 1092260944}
+  - {fileID: 2044182783}
+  horizontalSeparation: 4
+  verticalSpacing: 3
+  columnTiltOffset: 1
 --- !u!1 &443498330
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,10 +409,56 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2044182783}
-  - {fileID: 1092260944}
   - {fileID: 1977387100}
+  - {fileID: 1092260944}
+  - {fileID: 2044182783}
   m_Father: {fileID: 46806624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &495897030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495897032}
+  - component: {fileID: 495897031}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &495897031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495897030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcd743fc429857488ab258ec1fff596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RhythmManager
+  perfectWindow: 0.05
+  goodWindow: 0.12
+--- !u!4 &495897032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495897030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &525795405
 GameObject:
@@ -378,7 +471,7 @@ GameObject:
   - component: {fileID: 525795406}
   - component: {fileID: 525795407}
   m_Layer: 0
-  m_Name: NoteBody_R
+  m_Name: LaneBody_V
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 525795405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,7 +567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &624433956
 Transform:
   m_ObjectHideFlags: 0
@@ -559,7 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 665669058}
   m_Layer: 0
-  m_Name: Star_btm_left
+  m_Name: Star_top_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,7 +667,7 @@ Transform:
   m_GameObject: {fileID: 665669057}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -590,6 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995553851}
+  - component: {fileID: 995553852}
   m_Layer: 0
   m_Name: Central Star
   m_TagString: Untagged
@@ -613,6 +707,20 @@ Transform:
   - {fileID: 624433956}
   m_Father: {fileID: 422931442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995553852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995553850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 32
+  activeNote: {fileID: 2742994987808656461, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &1092260943
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +746,7 @@ Transform:
   m_GameObject: {fileID: 1092260943}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -656,7 +764,7 @@ GameObject:
   - component: {fileID: 1338819831}
   - component: {fileID: 1338819832}
   m_Layer: 0
-  m_Name: NoteBody_N
+  m_Name: LaneBody_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 1338819830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -746,7 +854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1381598500}
   m_Layer: 0
-  m_Name: Star_top_left
+  m_Name: Star_btm_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +869,7 @@ Transform:
   m_GameObject: {fileID: 1381598499}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -779,7 +887,7 @@ GameObject:
   - component: {fileID: 1622850043}
   - component: {fileID: 1622850044}
   m_Layer: 0
-  m_Name: NoteBody_F
+  m_Name: LaneBody_F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -794,7 +902,7 @@ Transform:
   m_GameObject: {fileID: 1622850042}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -888,9 +996,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1381598500}
-  - {fileID: 63754073}
   - {fileID: 665669058}
+  - {fileID: 63754073}
+  - {fileID: 1381598500}
   m_Father: {fileID: 46806624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1758991342
@@ -904,7 +1012,7 @@ GameObject:
   - component: {fileID: 1758991343}
   - component: {fileID: 1758991344}
   m_Layer: 0
-  m_Name: NoteBody_I
+  m_Name: LaneBody_N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -919,7 +1027,7 @@ Transform:
   m_GameObject: {fileID: 1758991342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,7 +1103,7 @@ GameObject:
   - component: {fileID: 1933706038}
   - component: {fileID: 1933706039}
   m_Layer: 0
-  m_Name: NoteBody_J
+  m_Name: LaneBody_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1118,7 @@ Transform:
   m_GameObject: {fileID: 1933706037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1085,7 +1193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977387100}
   m_Layer: 0
-  m_Name: Star_btm_right
+  m_Name: Star_top_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,7 +1208,7 @@ Transform:
   m_GameObject: {fileID: 1977387099}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1117,7 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044182783}
   m_Layer: 0
-  m_Name: Star_top_right
+  m_Name: Star_btm_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1240,7 @@ Transform:
   m_GameObject: {fileID: 2044182782}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1281,4 +1389,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2119521536}
+  - {fileID: 495897032}
   - {fileID: 422931442}
+  - {fileID: 255451492}

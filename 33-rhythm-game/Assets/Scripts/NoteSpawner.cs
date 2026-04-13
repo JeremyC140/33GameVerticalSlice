@@ -1,63 +1,41 @@
 using UnityEngine;
 
-public class NoteSpawner : MonoBehaviour
+public class SimpleTestSpawner : MonoBehaviour
 {
-    [Header("Lane References")]
-    [Tooltip("Drag the 7 Star Containers here.")]
-    public NoteController[] noteLanes;
+    [Header("References")]
+    public LaneController spacebarLane;
+    public NoteVisual notePrefab;
 
-    [Header("Test Configuration")]
-    [Tooltip("How many seconds the note takes to reach 100% scale.")]
+    [Header("Settings")]
     public float approachTime = 1.5f;
-
-    [Tooltip("Time in seconds between each random note spawn.")]
-    public float spawnInterval = 0.5f;
-
-    private double nextSpawnTime;
-
-    void Start()
-    {
-        // Set the timer for the very first note
-        nextSpawnTime = AudioSettings.dspTime + 1.0; // Start 1 second after playing
-    }
 
     void Update()
     {
-        // 1. Automatic Random Spawning
-        // We use dspTime for precise triggering instead of Time.deltaTime
-        if (AudioSettings.dspTime >= nextSpawnTime)
+        // Press 'Enter' to spawn a test note
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            SpawnRandomNote();
-
-            // Schedule the next spawn exactly 'spawnInterval' seconds from the current target
-            nextSpawnTime += spawnInterval;
-        }
-
-        // 2. Manual Testing (Press 'M' to force a spawn immediately)
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SpawnRandomNote();
+            SpawnNote();
         }
     }
 
-    // You can right-click the script in the Inspector to trigger this manually too!
-    [ContextMenu("Spawn Random Note Now")]
-    private void SpawnRandomNote()
+    private void SpawnNote()
     {
-        if (noteLanes == null || noteLanes.Length == 0)
+        if (spacebarLane == null || notePrefab == null)
         {
-            Debug.LogWarning("NoteSpawner: No NoteControllers assigned in the Inspector!");
+            Debug.LogWarning("Missing references in SimpleTestSpawner!");
             return;
         }
 
-        // Pick a random lane from 0 to 6
-        int randomIndex = Random.Range(0, noteLanes.Length);
-        NoteController selectedLane = noteLanes[randomIndex];
+        // 1. Spawn the visual prefab as a child of the Lane Container
+        NoteVisual newNote = Instantiate(notePrefab, spacebarLane.transform.position, Quaternion.identity, spacebarLane.transform);
 
-        // The target hit time is EXACTLY the current audio time + the approach duration
+        // 2. Calculate the exact future dspTime this note should hit 100% scale
         double targetHitTime = AudioSettings.dspTime + approachTime;
 
-        // Tell the selected lane to start its approach animation
-        selectedLane.InitializeNote(targetHitTime, approachTime);
+        // 3. Boot up the visual animation
+        newNote.InitializeNote(targetHitTime, approachTime);
+
+        // 4. Hand the note to the Lane Controller so it can listen for the Spacebar press
+        spacebarLane.AssignNote(newNote);
     }
 }
