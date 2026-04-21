@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1384627684351117893}
   - component: {fileID: 3728733876805187075}
-  - component: {fileID: 2742994987808656461}
+  - component: {fileID: 7767690085116887030}
   m_Layer: 0
   m_Name: note_prefab
   m_TagString: Untagged
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2742994987808656461
+--- !u!114 &7767690085116887030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteVisual
   visualNote: {fileID: 1384627684351117893}
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  hitColor: {r: 0, g: 1, b: 1, a: 1}
+  idleColor: {r: 0, g: 1, b: 1, a: 1}
+  hitColor: {r: 0, g: 1, b: 0, a: 1}
   missColor: {r: 1, g: 0, b: 0, a: 1}
+  scaleEasePower: 1.6

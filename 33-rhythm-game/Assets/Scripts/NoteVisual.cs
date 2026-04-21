@@ -8,9 +8,13 @@ public class NoteVisual : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] private Transform visualNote;
-    [SerializeField] private Color idleColor = Color.white;
-    [SerializeField] private Color hitColor = Color.cyan;
+    [SerializeField] private Color idleColor = Color.cyan;
+    [SerializeField] private Color hitColor = Color.green;
     [SerializeField] private Color missColor = Color.red;
+
+    [Header("Depth Tuning")]
+    [Range(1f, 5f)]
+    [SerializeField] private float scaleEasePower = 2.5f; // 1 is linear, 2+ is exponential
 
     // -------------------------------------------------------------------------
     // Public State
@@ -73,10 +77,6 @@ public class NoteVisual : MonoBehaviour
     // Public API
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Arms this NoteVisual for an incoming note.
-    /// Call this from your NoteSpawner whenever a note
-    /// is scheduled for this lane.
     /// </summary>
     /// <param name="targetDspTime">
     ///     The exact dspTime at which the note should be hit.
@@ -89,7 +89,7 @@ public class NoteVisual : MonoBehaviour
     {
         TargetDspTime = targetDspTime;
         _approachStart = targetDspTime - approachTime; // when growth begins
-        _approachEnd = targetDspTime;                // when growth completes (scale == 1)
+        _approachEnd = targetDspTime;                  // when growth completes (scale == 1)
 
         IsActive = true;
         _hasBeenJudged = false;
@@ -110,6 +110,7 @@ public class NoteVisual : MonoBehaviour
 
         _hasBeenJudged = true;
         IsActive = false;
+        Destroy(gameObject);
 
         switch (grade)
         {
@@ -149,8 +150,15 @@ public class NoteVisual : MonoBehaviour
         double windowDuration = _approachEnd - _approachStart;
         double elapsed = now - _approachStart;
 
-        float t = Mathf.Clamp01((float)(elapsed / windowDuration));
-        float scale = Mathf.Lerp(0.1f, 1.0f, t);
+        // 1. Calculate linear t (0 to 1)
+        float tLinear = Mathf.Clamp01((float)(elapsed / windowDuration));
+
+        // 2. Apply the exponential curve
+        // Using Mathf.Pow makes the growth start slow and accelerate at the end
+        float tExponential = Mathf.Pow(tLinear, scaleEasePower);
+
+        // 3. Lerp using the curved 't'
+        float scale = Mathf.Lerp(0.1f, 1.0f, tExponential);
 
         visualNote.localScale = new Vector3(scale, scale, 1f);
     }

@@ -184,53 +184,6 @@ Transform:
   - {fileID: 1622850043}
   m_Father: {fileID: 1738114044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &255451490
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 255451492}
-  - component: {fileID: 255451491}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &255451491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255451490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ddc8ca2b3a863b4aa3a2a3cdce0c976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleTestSpawner
-  spacebarLane: {fileID: 995553852}
-  notePrefab: {fileID: 2742994987808656461, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
-  approachTime: 1.5
---- !u!4 &255451492
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255451490}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264403124
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495897032}
   - component: {fileID: 495897031}
+  - component: {fileID: 495897033}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -460,6 +414,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495897033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495897030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddc8ca2b3a863b4aa3a2a3cdce0c976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleTestSpawner
+  spacebarLane: {fileID: 995553852}
+  notePrefab: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
+  approachTime: 0.8
 --- !u!1 &525795405
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &624433956
 Transform:
   m_ObjectHideFlags: 0
@@ -578,7 +547,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 995553851}
@@ -1391,4 +1360,3 @@ SceneRoots:
   - {fileID: 2119521536}
   - {fileID: 495897032}
   - {fileID: 422931442}
-  - {fileID: 255451492}
