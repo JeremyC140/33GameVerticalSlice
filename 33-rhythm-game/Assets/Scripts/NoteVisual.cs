@@ -40,8 +40,6 @@ public class NoteVisual : MonoBehaviour
     // -------------------------------------------------------------------------
 
     private SpriteRenderer _spriteRenderer;
-
-    // Pulse constants — kept exactly as in the original NoteController
     private bool _isPulsing;
     private float _pulseTimer;
     private const float PulseDuration = 0.08f;
@@ -98,40 +96,6 @@ public class NoteVisual : MonoBehaviour
 
         // Start invisible; HandleScaleApproach will take over from here
         visualNote.localScale = Vector3.zero;
-    }
-
-    /// <summary>
-    /// Called by LaneController with the grade resolved by RhythmManager.
-    /// Also called internally by HandleAutoMiss on a timed-out note.
-    /// </summary>
-    public void Judge(HitGrade grade)
-    {
-        if (_hasBeenJudged) return;
-
-        _hasBeenJudged = true;
-        IsActive = false;
-        Destroy(gameObject);
-
-        switch (grade)
-        {
-            case HitGrade.Perfect:
-                Debug.Log($"[{gameObject.name}] PERFECT!");
-                ApplyColor(hitColor);
-                TriggerPulse();
-                break;
-
-            case HitGrade.Good:
-                Debug.Log($"[{gameObject.name}] Good");
-                ApplyColor(hitColor);
-                TriggerPulse();
-                break;
-
-            case HitGrade.Miss:
-                Debug.Log($"[{gameObject.name}] Miss");
-                ApplyColor(missColor);
-                ResetVisuals();
-                break;
-        }
     }
 
     // -------------------------------------------------------------------------
@@ -192,6 +156,40 @@ public class NoteVisual : MonoBehaviour
         {
             _isPulsing = false;
             visualNote.localScale = Vector3.zero;
+        }
+    }
+
+    /// <summary>
+    /// Called by LaneController with the grade resolved by RhythmManager.
+    /// Also called internally by HandleAutoMiss on a timed-out note.
+    /// </summary>
+    public void Judge(HitGrade grade)
+    {
+        if (_hasBeenJudged) return;
+
+        _hasBeenJudged = true;
+        IsActive = false;
+        Destroy(gameObject);
+
+        switch (grade)
+        {
+            case HitGrade.Perfect:
+                Debug.Log($"[{gameObject.name}] PERFECT!");
+                ApplyColor(hitColor);
+                //TriggerPulse();
+                break;
+
+            case HitGrade.Good:
+                Debug.Log($"[{gameObject.name}] Good");
+                ApplyColor(hitColor);
+                //TriggerPulse();
+                break;
+
+            case HitGrade.Miss:
+                Debug.Log($"[{gameObject.name}] Miss");
+                ApplyColor(missColor);
+                ResetVisuals();
+                break;
         }
     }
 
