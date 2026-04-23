@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb792e0376006a47b8c9e0845c527d2, type: 3}
   m_Name: 0_InfinityHeaven
   m_EditorClassIdentifier: Assembly-CSharp::SongData
-  songName: 
-  artist: 
-  audioFile: {fileID: 0}
-  songBPM: 0
+  songName: Infinity Heaven
+  artist: Hyun
+  audioFile: {fileID: 8300000, guid: 8cd6fa7e216d7b54894df614d823f162, type: 3}
+  songBPM: 160
   offset: 0
   previewStartTime: 0
-  difficultyLevel: 0
+  difficultyLevel: 3
   chart: []

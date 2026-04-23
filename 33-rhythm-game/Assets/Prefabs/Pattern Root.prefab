@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4891341798046019442}
+  - component: {fileID: 7088005205916197062}
   m_Layer: 0
   m_Name: Star_top_right
   m_TagString: Untagged
@@ -156,6 +157,20 @@ Transform:
   - {fileID: 7974945118981224141}
   m_Father: {fileID: 4240067660312904391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7088005205916197062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000916422777471431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 105
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3227865104193840027
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8986923079245933651}
+  - component: {fileID: 92092025668206805}
   m_Layer: 0
   m_Name: Star_top_left
   m_TagString: Untagged
@@ -188,6 +204,20 @@ Transform:
   - {fileID: 3854364249167889685}
   m_Father: {fileID: 667764700975184514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92092025668206805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227865104193840027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 114
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3296288504960499329
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 32
-  activeNote: {fileID: 2742994987808656461, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3597206316213025968
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441161102681840736}
+  - component: {fileID: 6447533997026575638}
   m_Layer: 0
   m_Name: Star_mid_left
   m_TagString: Untagged
@@ -574,6 +605,20 @@ Transform:
   - {fileID: 488280080406710657}
   m_Father: {fileID: 667764700975184514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6447533997026575638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107292468226075668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 102
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &5795414144925297795
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6750602508040494772}
+  - component: {fileID: 8272278085665280152}
   m_Layer: 0
   m_Name: Star_btm_right
   m_TagString: Untagged
@@ -606,6 +652,20 @@ Transform:
   - {fileID: 3161285362586920824}
   m_Father: {fileID: 4240067660312904391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8272278085665280152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795414144925297795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 110
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &5951007827064780892
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +766,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2023283756006937879}
+  - component: {fileID: 8005645001187308890}
   m_Layer: 0
   m_Name: Star_mid_right
   m_TagString: Untagged
@@ -729,6 +790,20 @@ Transform:
   - {fileID: 5750727357487558867}
   m_Father: {fileID: 4240067660312904391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8005645001187308890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074164497540086327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 106
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &7766137077010503422
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2787117104691944429}
+  - component: {fileID: 4220082747682524745}
   m_Layer: 0
   m_Name: Star_btm_left
   m_TagString: Untagged
@@ -761,6 +837,20 @@ Transform:
   - {fileID: 4426776771176181047}
   m_Father: {fileID: 667764700975184514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4220082747682524745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766137077010503422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneController
+  targetKey: 118
+  activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &8329468034599645810
 GameObject:
   m_ObjectHideFlags: 0

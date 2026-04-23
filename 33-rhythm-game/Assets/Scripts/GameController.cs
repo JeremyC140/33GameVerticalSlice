@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != this || Instance != null) {
-            Destroy(gameObject);
+        if (Instance != this && Instance != null) {
+            Destroy(this);
             return;
         }
         Instance = this;
@@ -28,7 +28,12 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        // HINT: When the game starts, find the AudioManager and tell it to Play currentSong.
+        AudioManager audioManager = FindAnyObjectByType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.PlaySong(currentSong);
+            Debug.Log($"Playing song: {currentSong.songName}");
+        }
     }
 
     void Update()
@@ -36,7 +41,7 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
             TogglePause();
         }
-        if (Input.GetKeyDown(KeyCode.R)) { 
+        if (Input.GetKeyDown(KeyCode.Z)) { 
             RestartLevel();
         }
     }

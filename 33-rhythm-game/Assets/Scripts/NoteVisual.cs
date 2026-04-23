@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class NoteVisual : MonoBehaviour
 {
@@ -8,9 +10,9 @@ public class NoteVisual : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] private Transform visualNote;
-    [SerializeField] private Color idleColor = Color.cyan;
-    [SerializeField] private Color hitColor = Color.green;
-    [SerializeField] private Color missColor = Color.red;
+    //[SerializeField] private Color idleColor = Color.cyan;
+    //[SerializeField] private Color hitColor = Color.green;
+    //[SerializeField] private Color missColor = Color.red;
 
     [Header("Depth Tuning")]
     [Range(1f, 5f)]
@@ -44,6 +46,8 @@ public class NoteVisual : MonoBehaviour
     private float _pulseTimer;
     private const float PulseDuration = 0.08f;
     private const float PulseScalePeak = 1.25f;
+
+    //public TextMeshProUGUI displayText;
 
     // -------------------------------------------------------------------------
     // Unity Lifecycle
@@ -92,7 +96,7 @@ public class NoteVisual : MonoBehaviour
         IsActive = true;
         _hasBeenJudged = false;
 
-        ApplyColor(idleColor);
+        //ApplyColor(idleColor);
 
         // Start invisible; HandleScaleApproach will take over from here
         visualNote.localScale = Vector3.zero;
@@ -175,19 +179,22 @@ public class NoteVisual : MonoBehaviour
         {
             case HitGrade.Perfect:
                 Debug.Log($"[{gameObject.name}] PERFECT!");
-                ApplyColor(hitColor);
+                //displayText.text = "RESULT: PERFECT!";
+                //ApplyColor(hitColor);
                 //TriggerPulse();
                 break;
 
             case HitGrade.Good:
                 Debug.Log($"[{gameObject.name}] Good");
-                ApplyColor(hitColor);
+                //displayText.text = "RESULT: GOOD!";
+                //ApplyColor(hitColor);
                 //TriggerPulse();
                 break;
 
             case HitGrade.Miss:
                 Debug.Log($"[{gameObject.name}] Miss");
-                ApplyColor(missColor);
+                //displayText.text = "RESULT: MISS!";
+                //ApplyColor(missColor);
                 ResetVisuals();
                 break;
         }
@@ -215,6 +222,6 @@ public class NoteVisual : MonoBehaviour
         if (visualNote != null)
             visualNote.localScale = Vector3.zero;
 
-        ApplyColor(idleColor);
+        //ApplyColor(idleColor);
     }
 }

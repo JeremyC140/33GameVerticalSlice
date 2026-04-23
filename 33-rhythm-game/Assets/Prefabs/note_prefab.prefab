@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2158543994308459466, guid: 0382f49f1f302d94e9269bf1c66ae263, type: 3}
-  m_Color: {r: 0.9333334, g: 0.8666667, b: 0.509804, a: 0.4117647}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -105,7 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteVisual
   visualNote: {fileID: 1384627684351117893}
-  idleColor: {r: 0, g: 1, b: 1, a: 1}
-  hitColor: {r: 0, g: 1, b: 0, a: 1}
-  missColor: {r: 1, g: 0, b: 0, a: 1}
-  scaleEasePower: 1.6
+  scaleEasePower: 5
