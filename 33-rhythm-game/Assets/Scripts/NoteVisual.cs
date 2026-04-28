@@ -65,9 +65,6 @@ public class NoteVisual : MonoBehaviour
     {
         if (!IsActive) return;
 
-        // dspTime is a double that the audio engine advances independently of
-        // the frame rate. We read it once per Update to keep all math in sync
-        // for this frame — avoiding any micro-drift from multiple reads.
         double now = AudioSettings.dspTime;
 
         HandleAutoMiss(now);

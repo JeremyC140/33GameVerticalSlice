@@ -34,6 +34,11 @@ public class GameController : MonoBehaviour
             audioManager.PlaySong(currentSong);
             Debug.Log($"Playing song: {currentSong.songName}");
         }
+        NoteSpawner noteSpawner = FindAnyObjectByType<NoteSpawner>();
+        if (noteSpawner != null)
+        {
+            noteSpawner.StartSpawning(currentSong);
+        }
     }
 
     void Update()

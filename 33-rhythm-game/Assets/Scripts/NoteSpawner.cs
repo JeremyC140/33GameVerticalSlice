@@ -1,64 +1,73 @@
 using UnityEngine;
 
-public class SimpleTestSpawner : MonoBehaviour
+public class NoteSpawner : MonoBehaviour
 {
+    private SongData currentSong;
+
     [Header("References")]
     public LaneController[] laneControllers;
     public NoteVisual notePrefab;
 
-    [Header("Settings")]
+    [Header("Timing")]
     public float approachTime = 1.5f;
+    private int _nextNoteIndex = 0;   // The pointer to the next note to spawn
+    private double _songStartTime;
+    private bool _isSongPlaying = false;
 
+    public void StartSpawning(SongData song)
+    {
+        _nextNoteIndex = 0;
+        _isSongPlaying = true;
+        currentSong = song;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!_isSongPlaying || currentSong == null) return;
+        if (_nextNoteIndex < currentSong.chart.Count)
         {
-            SpawnNote(laneControllers[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpawnNote(laneControllers[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpawnNote(laneControllers[2]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SpawnNote(laneControllers[3]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SpawnNote(laneControllers[4]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SpawnNote(laneControllers[5]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            SpawnNote(laneControllers[6]);
+            // 2. Get the data for the upcoming note
+            NoteData nextNoteData = currentSong.chart[_nextNoteIndex];
+
+            // 3. The Spawning Condition
+            // We spawn the note early so it has time to "approach" the player
+            if (AudioSettings.dspTime >= (nextNoteData.hitTime - approachTime))
+            {
+                SpawnNote(nextNoteData);
+                _nextNoteIndex++;
+            }
         }
     }
-
-    private void SpawnNote(LaneController laneRef)
+    void OnEnable()
     {
-        if (laneRef == null || notePrefab == null)
-        {
-            Debug.LogWarning("Missing references in SimpleTestSpawner!");
-            return;
-        }
+        // --- Event Subscription ---
+        //GameController.OnPauseGame += HandlePause;
+        GameController.OnRestartGame += ResetSpawner;
+        //GameController.OnQuitGame += HandleQuit;
+    }
 
-        // 1. Spawn the visual prefab as a child of the Lane Container
+    void OnDisable()
+    {
+        // --- Event Unsubscription ---
+        //GameController.OnPauseGame -= HandlePause;
+        GameController.OnRestartGame -= ResetSpawner;
+        //GameController.OnQuitGame -= HandleQuit;
+    }
+
+    private void SpawnNote(NoteData note)
+    {
+        LaneController laneRef = laneControllers[note.laneIndex];
+
         NoteVisual newNote = Instantiate(notePrefab, laneRef.transform.position, Quaternion.identity, laneRef.transform);
 
-        // 2. Calculate the exact future dspTime this note should hit 100% scale
         double targetHitTime = AudioSettings.dspTime + approachTime;
 
-        // 3. Boot up the visual animation
         newNote.InitializeNote(targetHitTime, approachTime);
 
-        // 4. Hand the note to the Lane Controller so it can listen for the Spacebar press
         laneRef.AssignNote(newNote);
+    }
+    private void ResetSpawner()
+    {
+        _nextNoteIndex = 0;
+        _isSongPlaying = false;
     }
 }

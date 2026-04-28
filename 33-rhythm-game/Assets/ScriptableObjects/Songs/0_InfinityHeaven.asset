@@ -19,4 +19,10 @@ MonoBehaviour:
   offset: 0
   previewStartTime: 0
   difficultyLevel: 3
-  chart: []
+  chart:
+  - hitTime: 4
+    laneIndex: 4
+    type: 0
+  - hitTime: 8
+    laneIndex: 4
+    type: 0

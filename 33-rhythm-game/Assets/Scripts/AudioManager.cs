@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
     void OnDisable()
     {
-        // --- Event Unsubscription (Crucial for memory/safety!) ---
+        // --- Event Unsubscription ---
         GameController.OnPauseGame -= HandlePause;
         GameController.OnRestartGame -= HandleRestart;
         GameController.OnQuitGame -= HandleQuit;
