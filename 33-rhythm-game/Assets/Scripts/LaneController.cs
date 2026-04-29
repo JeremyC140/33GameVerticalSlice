@@ -32,7 +32,7 @@ public class LaneController : MonoBehaviour
         if (activeNote == null || !activeNote.IsActive) return;
 
         HitGrade grade = RhythmManager.Instance.EvaluateHit(
-            activeNote.TargetDspTime,
+            activeNote.TargetRealTime,
             NoteSpawner.Instance.currentSongRealTime
         );
 

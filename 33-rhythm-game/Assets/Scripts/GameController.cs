@@ -1,17 +1,21 @@
 using UnityEngine;
 using System;
-using Unity.VectorGraphics; // Required for 'Action' events
+using Unity.VisualScripting;
 
 public class GameController : MonoBehaviour
 {
     // --- Singleton Setup ---
     public static GameController Instance { get; private set; }
 
+    public GameObject visualScriptingTarget;
+
     [Header("Level Data")]
     public SongData currentSong;
 
     [Header("Player Customization")]
     public float offset = 0f; // Time in seconds to shift all notes (positive = later, negative = earlier)
+
+    private int currentCombo = 0;
 
     // --- Events ---
     public static event Action OnPauseGame;
@@ -35,13 +39,13 @@ public class GameController : MonoBehaviour
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
         {
-            audioManager.PlaySong(currentSong, AudioSettings.dspTime + offset + _gameDefaultStartTime);
+            audioManager.PlaySong(currentSong, AudioSettings.dspTime + _gameDefaultStartTime);
             Debug.Log($"Playing song: {currentSong.songName}");
         }
         NoteSpawner noteSpawner = FindAnyObjectByType<NoteSpawner>();
         if (noteSpawner != null)
         {
-            noteSpawner.StartSpawning(currentSong);
+            noteSpawner.StartSpawning(currentSong, offset);
         }
     }
 
@@ -53,6 +57,21 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)) { 
             RestartLevel();
         }
+    }
+
+    public void triggerPerfectHit() {
+        currentCombo++;
+        CustomEvent.Trigger(visualScriptingTarget, "PerfectHit", currentCombo.ToString());
+    }
+    public void triggerGoodHit()
+    {
+        currentCombo++;
+        CustomEvent.Trigger(visualScriptingTarget, "GoodHit", currentCombo.ToString());
+    }
+    public void triggerMissHit()
+    {
+        currentCombo = 0;
+        CustomEvent.Trigger(visualScriptingTarget, "MissHit", currentCombo.ToString());
     }
 
     public void TogglePause()

@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd743fc429857488ab258ec1fff596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RhythmManager
-  perfectWindow: 0.04
+  perfectWindow: 0.05
   goodWindow: 0.12
 --- !u!4 &495897032
 Transform:
@@ -328,9 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210a9d8b7f212c54997d28bd6ae1bf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
-  visualScriptingTarget: {fileID: 495897030}
   currentSong: {fileID: 11400000, guid: aca0db995a5a03341a63bd01c61887a8, type: 2}
-  offset: 0.043
+  offset: 0
 --- !u!114 &495897037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,11 +360,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"JudgmentUI","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TMPro.TextMeshProUGUI,
-      Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ComboUI","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TMPro.TextMeshProUGUI,
       Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1585735755}
-    - {fileID: 730560241}
 --- !u!114 &665669059 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 92092025668206805, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
@@ -377,17 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25426bc65fe3df4089dbcde74a145b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
---- !u!114 &730560241 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1984695960068154533, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-  m_PrefabInstance: {fileID: 8731887439366263910}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &995553852 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 339801735300524609, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}

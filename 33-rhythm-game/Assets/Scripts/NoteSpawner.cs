@@ -18,7 +18,7 @@ public class NoteSpawner : MonoBehaviour
     private NoteData[] _tempChart;
     private float songbpm;
     private float secondsPerEightBeat;
-    private int currentBeat;
+    private float chartOffset = 0f;
 
     void Awake()
     {
@@ -29,21 +29,21 @@ public class NoteSpawner : MonoBehaviour
         }
         Instance = this;
     }
-    public void StartSpawning(SongData song)
+    public void StartSpawning(SongData song, float offset)
     {
         _nextNoteIndex = 0;
         currentSong = song;
         songbpm = song.songBPM;
         secondsPerEightBeat = 60f / songbpm * 8;
-        currentBeat = 0;
-        currentSongRealTime = 0f;
+        chartOffset = offset;
+        currentSongRealTime = -chartOffset;
 
         _tempChart = new NoteData[20];
 
         for (int i = 0; i < 20; i++)
         {
             NoteData newNote = new NoteData();
-            newNote.hitTime = secondsPerEightBeat * i;
+            newNote.hitTime = secondsPerEightBeat * (i + 3);
             newNote.laneIndex = Random.Range(0, 7);
             newNote.type = NoteType.Tap;
             _tempChart[i] = newNote;
@@ -64,11 +64,12 @@ public class NoteSpawner : MonoBehaviour
         //    //    _nextNoteIndex++;
         //    //}
         //}
-        if (currentSongRealTime >= secondsPerEightBeat * currentBeat - approachTime && currentBeat < 20)
+        NoteData nextNoteData = _tempChart[_nextNoteIndex];
+        if (currentSongRealTime >= nextNoteData.hitTime - approachTime && _nextNoteIndex < 20)
         {
-            Debug.Log($"Prepare to spawn the {currentBeat}th eight beat ");
-            SpawnNote(_tempChart[currentBeat]);
-            currentBeat++;
+            Debug.Log($"Prepare to spawn the {_nextNoteIndex}th note");
+            SpawnNote(_tempChart[_nextNoteIndex]);
+            _nextNoteIndex++;
         }
     }
         
