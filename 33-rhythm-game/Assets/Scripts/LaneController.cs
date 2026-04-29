@@ -31,17 +31,13 @@ public class LaneController : MonoBehaviour
         if (!Input.GetKeyDown(targetKey)) return;
         if (activeNote == null || !activeNote.IsActive) return;
 
-        // dspTime is read here at the exact moment of input so the delta
-        // calculated inside EvaluateHit is as tight to the keypress as possible
         HitGrade grade = RhythmManager.Instance.EvaluateHit(
             activeNote.TargetDspTime,
-            AudioSettings.dspTime
+            NoteSpawner.Instance.currentSongRealTime
         );
 
         activeNote.Judge(grade);
 
-        // Clear the reference immediately — prevents any double-hit on the
-        // same note even if input somehow fires twice in one frame
         activeNote = null;
     }
 }

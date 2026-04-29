@@ -203,7 +203,8 @@ MonoBehaviour:
   - {fileID: 1092260945}
   - {fileID: 2044182784}
   notePrefab: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
-  approachTime: 0.8
+  approachTime: 2.5
+  currentSongRealTime: 0
 --- !u!82 &495897034
 AudioSource:
   m_ObjectHideFlags: 0
@@ -313,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f390aa4312c2a2c40b5a3b7de311b89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  isSongPlaying: 0
   musicVolume: 0.8
 --- !u!114 &495897036
 MonoBehaviour:
@@ -327,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   currentSong: {fileID: 11400000, guid: aca0db995a5a03341a63bd01c61887a8, type: 2}
+  offset: 0
 --- !u!114 &495897037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,8 +359,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"JudgmentUI","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"TMPro.TextMeshProUGUI,
+      Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"GameManager","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 1585735755}
+    - {fileID: 495897030}
 --- !u!114 &665669059 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 92092025668206805, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
@@ -481,6 +488,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1585735755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6383312416123677212, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
+  m_PrefabInstance: {fileID: 8731887439366263910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1947558007
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8709339879790248690, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

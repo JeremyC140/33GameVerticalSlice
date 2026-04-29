@@ -10,11 +10,15 @@ public class GameController : MonoBehaviour
     [Header("Level Data")]
     public SongData currentSong;
 
+    [Header("Player Customization")]
+    public float offset = 0f; // Time in seconds to shift all notes (positive = later, negative = earlier)
+
     // --- Events ---
     public static event Action OnPauseGame;
     public static event Action OnRestartGame;
     public static event Action OnQuitGame;
 
+    private float _gameDefaultStartTime = 2f;
     private bool _isPaused = false;
 
     private void Awake()
@@ -31,7 +35,7 @@ public class GameController : MonoBehaviour
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
         {
-            audioManager.PlaySong(currentSong);
+            audioManager.PlaySong(currentSong, AudioSettings.dspTime + offset + _gameDefaultStartTime);
             Debug.Log($"Playing song: {currentSong.songName}");
         }
         NoteSpawner noteSpawner = FindAnyObjectByType<NoteSpawner>();

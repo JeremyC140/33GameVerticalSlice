@@ -20,9 +20,18 @@ MonoBehaviour:
   previewStartTime: 0
   difficultyLevel: 3
   chart:
-  - hitTime: 4
+  - hitTime: 500
     laneIndex: 4
     type: 0
-  - hitTime: 8
+  - hitTime: 700
     laneIndex: 4
+    type: 0
+  - hitTime: 1000
+    laneIndex: 2
+    type: 0
+  - hitTime: 1200
+    laneIndex: 5
+    type: 0
+  - hitTime: 1300
+    laneIndex: 1
     type: 0

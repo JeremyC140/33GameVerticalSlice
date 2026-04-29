@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting; 
 
 public class NoteVisual : MonoBehaviour
 {
@@ -65,7 +66,8 @@ public class NoteVisual : MonoBehaviour
     {
         if (!IsActive) return;
 
-        double now = AudioSettings.dspTime;
+        double now = NoteSpawner.Instance.currentSongRealTime;
+        //Debug.Log("Current Note Visual Real Time: " + now);
 
         HandleAutoMiss(now);
         HandleScaleApproach(now);
@@ -89,6 +91,7 @@ public class NoteVisual : MonoBehaviour
         TargetDspTime = targetDspTime;
         _approachStart = targetDspTime - approachTime; // when growth begins
         _approachEnd = targetDspTime;                  // when growth completes (scale == 1)
+        Debug.Log("Initializing NoteVisual with TargetDspTime: " + TargetDspTime + " and ApproachStart: " + _approachStart);
 
         IsActive = true;
         _hasBeenJudged = false;
@@ -176,6 +179,7 @@ public class NoteVisual : MonoBehaviour
         {
             case HitGrade.Perfect:
                 Debug.Log($"[{gameObject.name}] PERFECT!");
+                EventBus.Trigger("PerfectHit");
                 //displayText.text = "RESULT: PERFECT!";
                 //ApplyColor(hitColor);
                 //TriggerPulse();
@@ -183,6 +187,7 @@ public class NoteVisual : MonoBehaviour
 
             case HitGrade.Good:
                 Debug.Log($"[{gameObject.name}] Good");
+                EventBus.Trigger("GoodHit");
                 //displayText.text = "RESULT: GOOD!";
                 //ApplyColor(hitColor);
                 //TriggerPulse();
@@ -190,6 +195,7 @@ public class NoteVisual : MonoBehaviour
 
             case HitGrade.Miss:
                 Debug.Log($"[{gameObject.name}] Miss");
+                EventBus.Trigger("MissHit");
                 //displayText.text = "RESULT: MISS!";
                 //ApplyColor(missColor);
                 ResetVisuals();

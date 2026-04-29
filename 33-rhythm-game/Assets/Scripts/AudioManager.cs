@@ -3,17 +3,26 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
+    public bool isSongPlaying = false;
     private AudioSource _audioSource;
 
     [Range(0f, 1f)]
     public float musicVolume = 0.8f;
+    
 
     void Awake()
     {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
         _audioSource = GetComponent<AudioSource>();
         _audioSource.volume = musicVolume;
     }
-
     void OnEnable()
     {
         // --- Event Subscription ---
@@ -30,10 +39,15 @@ public class AudioManager : MonoBehaviour
         GameController.OnQuitGame -= HandleQuit;
     }
 
-    public void PlaySong(SongData song)
+    private void Update()
+    {
+        isSongPlaying = _audioSource.isPlaying;
+    }
+
+    public void PlaySong(SongData song, double startTime)
     {
         _audioSource.clip = song.audioFile;
-        _audioSource.Play();
+        _audioSource.PlayScheduled(startTime);
     }
 
     private void HandlePause()
