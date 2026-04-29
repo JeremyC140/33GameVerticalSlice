@@ -140,6 +140,7 @@ public class NoteVisual : MonoBehaviour
         if (_hasBeenJudged) return;
         if (now > TargetDspTime + RhythmManager.Instance.GoodWindow)
             Judge(HitGrade.Miss);
+            EventBus.Trigger("MissHit");
     }
 
     /// <summary>
