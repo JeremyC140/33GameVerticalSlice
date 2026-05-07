@@ -738,54 +738,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 301540979510493229, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835596454951765053, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835596454951765053, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835596454951765053, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835596454951765053, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210256343926737334, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288065673708947816, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288065673708947816, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288065673708947816, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2288065673708947816, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3942533654365793229, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166500774752448777, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 4789934607043560636, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -825,10 +777,6 @@ PrefabInstance:
     - target: {fileID: 4789934607043560636, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6026528838284542214, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
-      propertyPath: m_Color.a
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8329468034599645810, guid: 5c0d2a5736fb1e7459832979990d579a, type: 3}
       propertyPath: m_Name
@@ -927,29 +875,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6383312416123677212, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6383312416123677212, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    - target: {fileID: 6383312416123677212, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    - target: {fileID: 6383312416123677212, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8679743999915235600, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
       propertyPath: m_Name
       value: In-Game UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8709339879790248690, guid: d0852de39903b2649bd70a6a465a51aa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

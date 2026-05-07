@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
     private void HandleRestart()
     {
         _audioSource.Stop();
-        _audioSource.Play();
+        //_audioSource.Play();
     }
 
     private void HandleQuit()

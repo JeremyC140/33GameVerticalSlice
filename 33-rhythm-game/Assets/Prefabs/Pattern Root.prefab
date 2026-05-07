@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -170,6 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 105
+  laneVisual: {fileID: 7974945118981224141}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3227865104193840027
 GameObject:
@@ -217,6 +221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 114
+  laneVisual: {fileID: 3854364249167889685}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3296288504960499329
 GameObject:
@@ -264,6 +272,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 32
+  laneVisual: {fileID: 3631637717309057900}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &3597206316213025968
 GameObject:
@@ -347,7 +359,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -472,7 +484,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -563,7 +575,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -618,6 +630,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 102
+  laneVisual: {fileID: 488280080406710657}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &5795414144925297795
 GameObject:
@@ -665,6 +681,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 110
+  laneVisual: {fileID: 3161285362586920824}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &5951007827064780892
 GameObject:
@@ -748,7 +768,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -803,6 +823,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 106
+  laneVisual: {fileID: 5750727357487558867}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &7766137077010503422
 GameObject:
@@ -850,6 +874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneController
   targetKey: 118
+  laneVisual: {fileID: 4426776771176181047}
+  pressedScaleMultiplier: 0.85
+  pressedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+  visualSpringSpeed: 20
   activeNote: {fileID: 7767690085116887030, guid: 60b673a2c4fa79747a384284ae58133d, type: 3}
 --- !u!1 &8329468034599645810
 GameObject:
@@ -991,7 +1019,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6723097416652839356, guid: 967c7496489640d4abcea531aae1b9ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1116,7 +1144,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2229334088224681151, guid: e24c6292ad7ea054080d584af295d41e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

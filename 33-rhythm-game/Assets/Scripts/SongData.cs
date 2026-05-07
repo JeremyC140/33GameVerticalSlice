@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewSong", menuName = "RhythmGame/SongData")]
 public class SongData : ScriptableObject
@@ -7,6 +8,7 @@ public class SongData : ScriptableObject
     [Header("General Info")]
         public string songName;
         public string artist;
+        public Sprite songImage;
 
     [Header("Audio Files")]
         public AudioClip audioFile;

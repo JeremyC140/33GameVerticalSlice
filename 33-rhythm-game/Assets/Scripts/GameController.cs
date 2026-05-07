@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -57,6 +58,9 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)) { 
             RestartLevel();
         }
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            QuitToMenu();
+        }
     }
 
     public void triggerPerfectHit() {
@@ -77,9 +81,9 @@ public class GameController : MonoBehaviour
     public void TogglePause()
     {
         _isPaused = !_isPaused;
+        OnPauseGame?.Invoke();
         if (_isPaused)
         {
-            OnPauseGame?.Invoke();
             Time.timeScale = 0f;
         }
         else { 
@@ -91,7 +95,7 @@ public class GameController : MonoBehaviour
     public void RestartLevel()
     {
         OnRestartGame?.Invoke();
-        // HINT: You might want to reload the scene or just reset the timers/notes.
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitToMenu()

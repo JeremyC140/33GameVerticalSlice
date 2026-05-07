@@ -16,10 +16,6 @@ public class RhythmManager : MonoBehaviour
     public float PerfectWindow => perfectWindow;
     public float GoodWindow => goodWindow;
 
-    // -------------------------------------------------------------------------
-    // Singleton
-    // -------------------------------------------------------------------------
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -37,11 +33,14 @@ public class RhythmManager : MonoBehaviour
 
     /// <summary>
     /// Evaluates a hit attempt by comparing the absolute delta between the
-    /// note's target dspTime and the moment the player pressed the key.
+    /// note's target RealTime and the moment the player pressed the key.
     /// Returns the appropriate HitGrade based on the global timing windows.
+    /// Returns HitGrade.None if the hit shouldn't be judged yet.
     /// </summary>
     public HitGrade EvaluateHit(double targetTime, double hitTime)
     {
+        if (hitTime - targetTime > goodWindow) return HitGrade.None;
+    
         double delta = System.Math.Abs(hitTime - targetTime);
 
         if (delta <= perfectWindow) return HitGrade.Perfect;
@@ -53,4 +52,4 @@ public class RhythmManager : MonoBehaviour
 
 // Defined here so both LaneController and NoteVisual share the same type
 // without any script needing to reference the other directly.
-public enum HitGrade { Perfect, Good, Miss }
+public enum HitGrade { Perfect, Good, Miss, None }
