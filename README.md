@@ -11,7 +11,8 @@ Then, the state machine alters and performs corresponding action by calling Even
 ![New Break-down Graph with State Machine Details](image.png)
 
 ## Milestone 2 Devlog
-Milestone 2 Devlog goes here.
+
+
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
 ## Milestone 4 Devlog
