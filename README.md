@@ -13,6 +13,8 @@ Then, the state machine alters and performs corresponding action by calling Even
 
 ## Milestone 2 Devlog
 1. 
+Complicating factor:
+The central mechanic of my rhythm game centers around the logic of hitting music notes and correctly giving it a judge result according to how accurate the press timing is (player should click at the moment the golden star grows to the same size as the lane star). I have refined the logic so it works more correctly compared to milestone 1 -- the player's "too early" press now won't be judged as miss, which should prevent a lot of confusion around the judging. For this milestone, I specifically add more visual indication such as labeling the star with their designated keycode, and create the menu scene that demonstrate a minimal UI version of song selection menu as well as two other songs that showcase my usage of scriptable objects to manage individual song in this game. 
 
 
 --- Task 1: Implementing Song Selection Menu ---
