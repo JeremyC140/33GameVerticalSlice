@@ -52,6 +52,7 @@ public class NoteSpawner : MonoBehaviour
     void Update()
     {
         if (!AudioManager.Instance.isSongPlaying || currentSong == null) return;
+        if (_nextNoteIndex >= 20) return;
         currentSongRealTime += Time.deltaTime;
         //Debug.Log("Current Song Real Time: " + currentSongRealTime);
         //if (_nextNoteIndex < currentSong.chart.Count)
