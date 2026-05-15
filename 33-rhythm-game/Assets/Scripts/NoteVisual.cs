@@ -11,12 +11,21 @@ public class NoteVisual : MonoBehaviour
 
     [Header("Visuals")]
     [SerializeField] private Transform visualNote;
-    //[SerializeField] private Color idleColor = Color.cyan;
-    //[SerializeField] private Color hitColor = Color.green;
-    //[SerializeField] private Color missColor = Color.red;
+    [SerializeField] private float startingScale = 0.15f;
 
-    [Header("Depth Tuning")]
-    [Range(1f, 5f)]
+    [Header("Rotation Settings")]
+    public float startAngle = 0f;
+    [Tooltip("Total degrees the star will spin during the approach. e.g., 360 for one full spin.")]
+    public float totalRotationDegrees = 360f;
+
+    //[Header("Scale Curve Settings (Logarithmic)")]
+    //[Tooltip("Controls how fast the note 'pops' at the beginning. Higher = faster start, slower end.")]
+    //[Range(1f, 50f)]
+    //public float logSteepness = 15f;
+
+    [Header("Scale Curve Settings (Exponential)")]
+    [Tooltip("<1 is root functions, 1 is linear, 2+ is exponential")]
+    [Range(0.1f, 5f)]
     [SerializeField] private float scaleEasePower = 2.5f; // 1 is linear, 2+ is exponential
 
     // -------------------------------------------------------------------------
@@ -48,12 +57,6 @@ public class NoteVisual : MonoBehaviour
     private const float PulseDuration = 0.08f;
     private const float PulseScalePeak = 1.25f;
 
-    //public TextMeshProUGUI displayText;
-
-    // -------------------------------------------------------------------------
-    // Unity Lifecycle
-    // -------------------------------------------------------------------------
-
     private void Awake()
     {
         if (visualNote != null)
@@ -67,7 +70,6 @@ public class NoteVisual : MonoBehaviour
         if (!IsActive) return;
 
         double now = NoteSpawner.Instance.currentSongRealTime;
-        //Debug.Log("Current Note Visual Real Time: " + now);
 
         HandleAutoMiss(now);
         HandleScaleApproach(now);
@@ -96,10 +98,7 @@ public class NoteVisual : MonoBehaviour
         IsActive = true;
         _hasBeenJudged = false;
 
-        //ApplyColor(idleColor);
-
-        // Start invisible; HandleScaleApproach will take over from here
-        visualNote.localScale = Vector3.zero;
+        visualNote.localScale = startingScale * Vector3.one;
     }
 
     // -------------------------------------------------------------------------
@@ -118,17 +117,26 @@ public class NoteVisual : MonoBehaviour
         double windowDuration = _approachEnd - _approachStart;
         double elapsed = now - _approachStart;
 
-        // 1. Calculate linear t (0 to 1)
+        // 1.
+        // Calculate linear t (0 to 1)
         float tLinear = Mathf.Clamp01((float)(elapsed / windowDuration));
 
-        // 2. Apply the exponential curve
+        // 2.
+        // Attempt: Apply the exponential curve
         // Using Mathf.Pow makes the growth start slow and accelerate at the end
         float tExponential = Mathf.Pow(tLinear, scaleEasePower);
 
-        // 3. Lerp using the curved 't'
-        float scale = Mathf.Lerp(0.1f, 1.0f, tExponential);
 
+        // 3.
+        // Lerp using the curved 't'
+        float scale = Mathf.Lerp(startingScale, 1.0f, tExponential);
         visualNote.localScale = new Vector3(scale, scale, 1f);
+
+        // 4.
+        // Handle Rotation
+        // Mapped to tLinear so the spin speed remains constant even as the scaling slows down.
+        float currentAngle = Mathf.Lerp(startAngle, startAngle + totalRotationDegrees, tExponential);
+        visualNote.localRotation = Quaternion.Euler(0f, 0f, currentAngle);
     }
 
     /// <summary>
