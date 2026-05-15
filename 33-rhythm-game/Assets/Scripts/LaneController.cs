@@ -73,6 +73,7 @@ public class LaneController : MonoBehaviour
         else
         {
             // AudioManager.Instance.PlayHitSound();
+            return;
         }
     }
 

@@ -39,7 +39,7 @@ public class RhythmManager : MonoBehaviour
     /// </summary>
     public HitGrade EvaluateHit(double targetTime, double hitTime)
     {
-        if (hitTime - targetTime > goodWindow) return HitGrade.None;
+        if (targetTime - hitTime > goodWindow) return HitGrade.None;
     
         double delta = System.Math.Abs(hitTime - targetTime);
 
