@@ -42,7 +42,17 @@ I think the breakdown is helpful for me in building this personal project becaus
 
 
 3.  
+In my game, visual scripting graph is specified in tackling the visual effect performance. Specifically, it handles and fires a different visual indication to the player in response to a hit evaluation of "perfect", "good", or "hit". I've done this by calling custom node event in c# script NoteVisual in Judge method, where the state machine switches between these three state and call corresponding custom graph event node. The lines of code look like:
 
+- GameController.Instance.triggerPerfectHit(); ->
+- CustomEvent.Trigger(visualScriptingTarget, "PerfectHit", currentCombo.ToString());
+- where visualScriptingTarget is the gameobject I placed the graph on, for c# script to correctly locate the graph. 
+
+The graph is attached below, and the second image shows the "PerfectHit" custom event being referenced and called by the c# code listed above.
+![Visual Scripting Graph Entire View](image-1.png)
+![Specific Detail of Branch](image-3.png)
+
+The later action of the branch performs the display of result onto the screen (updating the TMP text) and making it disappears after a delay of 1 second (where the coroutine node WaitForSeconds is used). In the future, the graph will also fires more visual effect and sound effect in response to the state received from c# script. 
 
 
 4.  
