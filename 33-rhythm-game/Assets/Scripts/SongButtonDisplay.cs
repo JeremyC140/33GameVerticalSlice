@@ -22,4 +22,16 @@ public class SongButtonDisplay : MonoBehaviour
             songTitle.text = songData.songName;
         }
     }
+
+    public void onClicked()
+    {
+        if (songData != null)
+        {
+            SongSelectionManager manager = FindAnyObjectByType<SongSelectionManager>();
+            if (manager != null)
+            {
+                manager.SelectSong(songData);
+            }
+        }
+    }
 }

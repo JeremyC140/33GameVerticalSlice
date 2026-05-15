@@ -21,7 +21,7 @@ Then, the state machine alters and performs corresponding action by calling Even
 
     2. Establish a SceneManager script that handles the transition of scene to GamePlayScene 
 
-    3. Create the scroller UI on the left-hand side of the screen that displays a list of scriptableObjects that represent each individual song. The scroller should be a list of scrollable objects with sone names.
+    3. Create the scroller UI on the left-hand side of the screen that displays a list of scriptableObjects that represent each individual song. The scroller should be a list of scrollable objects with song names.
 
     4. Set-up the song detail panel on the right-hand side of the screen that display the details store in the scriptableObject when that individual song is selected (create a songSelectionManager to update the metadata to UI texts).
 
@@ -56,4 +56,7 @@ Milestone 4 Devlog goes here.
 ## Final Devlog
 Final Devlog goes here.
 ## Open-source assets
-- Cite any external assets used here!
+- [Starla Font from DaFont](https://www.dafont.com/starla.font)
+- [Song Metadata and Images - Infinite Heaven](https://arcaea.fandom.com/wiki/Infinity_Heaven)
+- [Song Metadata and Images - Tempestissmo](https://arcaea.fandom.com/wiki/Tempestissimo)
+- [Song Metadata and Images - Aegleseeker](https://arcaea.fandom.com/wiki/Aegleseeker)

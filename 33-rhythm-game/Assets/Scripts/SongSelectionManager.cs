@@ -39,8 +39,8 @@ public class SongSelectionManager : MonoBehaviour
 
         // Update the Right Column UI
         detailTitle.text = data.songName;
-        detailArtist.text = data.artist;
-        detailBPM.text = $"BPM: {data.songBPM}";
+        detailArtist.text = $"Artist: {data.artist}";
+        //detailBPM.text = $"BPM: {data.songBPM}";
         detailDifficulty.text = $"Difficulty: {data.difficultyLevel}";
         detailAlbumArt.sprite = data.songImage;
     }

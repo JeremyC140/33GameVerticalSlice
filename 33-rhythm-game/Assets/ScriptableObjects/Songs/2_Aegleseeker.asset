@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb792e0376006a47b8c9e0845c527d2, type: 3}
+  m_Name: 2_Aegleseeker
+  m_EditorClassIdentifier: Assembly-CSharp::SongData
+  songName: Aegleseeker
+  artist: Silentroom vs Frums
+  songImage: {fileID: -5007650260659702283, guid: 094d71e075d1c8545b83a523fbd687d6, type: 3}
+  audioFile: {fileID: 0}
+  songBPM: 234
+  offset: 0
+  previewStartTime: 0
+  difficultyLevel: 5
+  chart: []
