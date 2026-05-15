@@ -1,15 +1,15 @@
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class LaneController : MonoBehaviour
 {
     [Header("Input")]
-        [SerializeField]
-        private KeyCode targetKey;
+        [SerializeField] private KeyCode targetKey;
 
     [Header("Lane Visual Feedback")]
-        [SerializeField]
-        private Transform laneVisual;
+        [SerializeField] private Transform laneVisual;
 
         [Tooltip("How much to shrink the star when pressed (e.g., 0.85 = 85% size)")]
         public float pressedScaleMultiplier = 0.85f;
@@ -20,10 +20,9 @@ public class LaneController : MonoBehaviour
         [Tooltip("How fast the star squishes and springs back")]
         public float visualSpringSpeed = 20f;
 
-    [Header("Active Note")]
-        [SerializeField]
-        private NoteVisual activeNote; // Assigned from NoteSpawner when a note enters this lane
+        public TextMeshPro keyTextLabel;
 
+    private NoteVisual activeNote; // Assigned from NoteSpawner when a note enters this lane
     private Vector3 _originalScale;
     private Color _originalColor;
     private SpriteRenderer _laneRenderer;
@@ -38,7 +37,6 @@ public class LaneController : MonoBehaviour
             if (_laneRenderer != null)
                 _originalColor = _laneRenderer.color;
         }
-        //Debug.Log($"LaneController for key {targetKey} initialized. Original Scale: {_originalScale}, Original Color: {_originalColor}, SpriteRenderer: {_laneRenderer}");
     }
 
     // -------------------------------------------------------------------------
@@ -49,6 +47,14 @@ public class LaneController : MonoBehaviour
     {
         activeNote = note;
     }
+    public void UpdateKeybind(KeyCode newKey)
+    {
+        targetKey = newKey;
+        if (keyTextLabel != null)
+        {
+            keyTextLabel.text = targetKey.ToString();
+        }
+    }
 
     // -------------------------------------------------------------------------
     // Input Handling
@@ -56,6 +62,7 @@ public class LaneController : MonoBehaviour
 
     private void Update()
     {
+        UpdateKeybind(targetKey);
         HandleLaneVisual();
         if (!Input.GetKeyDown(targetKey)) return;
         if (activeNote == null || !activeNote.IsActive) return;

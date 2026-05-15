@@ -17,13 +17,16 @@ public class NoteVisual : MonoBehaviour
     public float startAngle = 0f;
     [Tooltip("Total degrees the star will spin during the approach. e.g., 360 for one full spin.")]
     public float totalRotationDegrees = 360f;
+    [Range(0.1f, 5f)]
+    [SerializeField] private float rotationEasePower = 2.5f; // 1 is linear, 2+ is exponential
+
 
     //[Header("Scale Curve Settings (Logarithmic)")]
     //[Tooltip("Controls how fast the note 'pops' at the beginning. Higher = faster start, slower end.")]
     //[Range(1f, 50f)]
     //public float logSteepness = 15f;
 
-    [Header("Scale Curve Settings (Exponential)")]
+    [Header("Approach Scale Curve (Exponential)")]
     [Tooltip("<1 is root functions, 1 is linear, 2+ is exponential")]
     [Range(0.1f, 5f)]
     [SerializeField] private float scaleEasePower = 2.5f; // 1 is linear, 2+ is exponential
@@ -47,22 +50,12 @@ public class NoteVisual : MonoBehaviour
 
     private bool _hasBeenJudged;
 
-    // -------------------------------------------------------------------------
-    // Private Visual State
-    // -------------------------------------------------------------------------
-
     private SpriteRenderer _spriteRenderer;
-    private bool _isPulsing;
-    private float _pulseTimer;
-    private const float PulseDuration = 0.08f;
-    private const float PulseScalePeak = 1.25f;
 
     private void Awake()
     {
         if (visualNote != null)
             _spriteRenderer = visualNote.GetComponent<SpriteRenderer>();
-
-        ResetVisuals();
     }
 
     private void Update()
@@ -73,7 +66,6 @@ public class NoteVisual : MonoBehaviour
 
         HandleAutoMiss(now);
         HandleScaleApproach(now);
-        HandlePulse();
     }
 
     // -------------------------------------------------------------------------
@@ -101,17 +93,13 @@ public class NoteVisual : MonoBehaviour
         visualNote.localScale = startingScale * Vector3.one;
     }
 
-    // -------------------------------------------------------------------------
-    // Core Visual Logic
-    // -------------------------------------------------------------------------
-
     /// <summary>
     /// Grows the star from 0.1 → 1.0 as dspTime travels from _approachStart
     /// to _TargetRealTime.
     /// </summary>
     private void HandleScaleApproach(double now)
     {
-        if (_hasBeenJudged || _isPulsing) return;
+        if (_hasBeenJudged) return;
 
         // Cast to float only for the Lerp — all timing comparisons stay double
         double windowDuration = _approachEnd - _approachStart;
@@ -124,18 +112,19 @@ public class NoteVisual : MonoBehaviour
         // 2.
         // Attempt: Apply the exponential curve
         // Using Mathf.Pow makes the growth start slow and accelerate at the end
-        float tExponential = Mathf.Pow(tLinear, scaleEasePower);
+        float tExponentialScale = Mathf.Pow(tLinear, scaleEasePower);
 
 
         // 3.
         // Lerp using the curved 't'
-        float scale = Mathf.Lerp(startingScale, 1.0f, tExponential);
+        float scale = Mathf.Lerp(startingScale, 1.0f, tExponentialScale);
         visualNote.localScale = new Vector3(scale, scale, 1f);
 
         // 4.
         // Handle Rotation
         // Mapped to tLinear so the spin speed remains constant even as the scaling slows down.
-        float currentAngle = Mathf.Lerp(startAngle, startAngle + totalRotationDegrees, tExponential);
+        float tExponentialRotation = Mathf.Pow(tLinear, rotationEasePower);
+        float currentAngle = Mathf.Lerp(startAngle, startAngle + totalRotationDegrees, tExponentialRotation);
         visualNote.localRotation = Quaternion.Euler(0f, 0f, currentAngle);
     }
 
@@ -148,27 +137,6 @@ public class NoteVisual : MonoBehaviour
         if (_hasBeenJudged) return;
         if (now > TargetRealTime + RhythmManager.Instance.GoodWindow)
             Judge(HitGrade.Miss);
-    }
-
-    /// <summary>
-    /// Decays the pulse scale back to zero after PulseDuration seconds.
-    /// Kept out of HandleScaleApproach so the two never fight over localScale.
-    /// </summary>
-    private void HandlePulse()
-    {
-        if (!_isPulsing) return;
-
-        _pulseTimer += Time.deltaTime;
-        float t = Mathf.Clamp01(_pulseTimer / PulseDuration);
-        float scale = Mathf.Lerp(PulseScalePeak, 0f, t);
-
-        visualNote.localScale = new Vector3(scale, scale, 1f);
-
-        if (t >= 1f)
-        {
-            _isPulsing = false;
-            visualNote.localScale = Vector3.zero;
-        }
     }
 
     /// <summary>
@@ -188,51 +156,17 @@ public class NoteVisual : MonoBehaviour
             case HitGrade.Perfect:
                 Debug.Log($"[{gameObject.name}] PERFECT!");
                 GameController.Instance.triggerPerfectHit();
-                //displayText.text = "RESULT: PERFECT!";
-                //ApplyColor(hitColor);
-                //TriggerPulse();
                 break;
 
             case HitGrade.Good:
                 Debug.Log($"[{gameObject.name}] Good");
                 GameController.Instance.triggerGoodHit();
-                //displayText.text = "RESULT: GOOD!";
-                //ApplyColor(hitColor);
-                //TriggerPulse();
                 break;
 
             case HitGrade.Miss:
                 Debug.Log($"[{gameObject.name}] Miss");
                 GameController.Instance.triggerMissHit();
-                //displayText.text = "RESULT: MISS!";
-                //ApplyColor(missColor);
-                ResetVisuals();
                 break;
         }
-    }
-
-    // -------------------------------------------------------------------------
-    // Helpers
-    // -------------------------------------------------------------------------
-
-    private void TriggerPulse()
-    {
-        _isPulsing = true;
-        _pulseTimer = 0f;
-        visualNote.localScale = new Vector3(PulseScalePeak, PulseScalePeak, 1f);
-    }
-
-    private void ApplyColor(Color color)
-    {
-        if (_spriteRenderer != null)
-            _spriteRenderer.color = color;
-    }
-
-    private void ResetVisuals()
-    {
-        if (visualNote != null)
-            visualNote.localScale = Vector3.zero;
-
-        //ApplyColor(idleColor);
     }
 }
