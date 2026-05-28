@@ -156,6 +156,7 @@ public class NoteVisual : MonoBehaviour
             case HitGrade.Perfect:
                 Debug.Log($"[{gameObject.name}] PERFECT!");
                 GameController.Instance.triggerPerfectHit();
+                VFXManager.Instance.TriggerPerfectFlash();
                 break;
 
             case HitGrade.Good:

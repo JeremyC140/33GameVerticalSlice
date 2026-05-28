@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0382f49f1f302d94e9269bf1c66ae263
+guid: e1a16ac628aa8ab4aa23ec18a8efcd45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2158543994308459466
-    second: golden-star_0
+      213: -3591887345455944866
+    second: golden-star_adobe_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,10 +54,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 0
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: golden-star_0
+      name: golden-star_adobe_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 11
         y: 9
-        width: 236
-        height: 241
+        width: 234
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: acbfecc8350b4fd10800000000000000
-      internalID: 2158543994308459466
+      spriteID: e5ba0ec6d7d072ec0800000000000000
+      internalID: -3591887345455944866
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      golden-star_0: 2158543994308459466
+      golden-star_adobe_0: -3591887345455944866
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
