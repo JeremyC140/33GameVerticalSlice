@@ -62,7 +62,19 @@ I would like to be graded for the use of ScriptableObjects, which I used to stor
 
 
 ## Milestone 3 Devlog
-Milestone 3 Devlog goes here.
+1.
+
+![alt text](image-4.png)
+
+The Shader Graph should be obvious. I tried to apply a scrolling liquid neon effect in the silver star lanes through manipulating and animating with UV. It took inspiration from how we achieved the fire shader animation during in-class activity. The central logic starts by connecting the "UV" node to a "tiling and offset" node, which allows me to play with the texture offset to create animation. Specifically, I use a multiplication of "time" node with a FlowSpeed (float) variable and attach it to the offset port, which makes the UV able to animate. Then, I used a "Split" node and acquire only the "G" value, which controls the vertical motion of the UV. The extracted "G" is multiplied with another variable Frequency, and all attach to the "sine" node to create the vertical flow effect. I then attach the outcome to an "absolute" node to make the animation smoother. Lastly, the animation effect is multiplied with the silver star texture to overlay the scrolling liquid neon visual. All these rgba then compose the final "fragment" color portion. This Shader Graph is finally made as material and applied through the six silver star lanes. 
+
+2. 
+Since my rhythm game mechanics is quite unique, I still didn't give up working on how the golden star note approaches. For this time, I made the golden star spins as it approaches and enlarges. Personally I think it strengthens the visual connection and did well in visual guiding (the star grows largest and is ready to be hitted as it aligns with the lane silver stars after spinning). 
+
+3. 
+Apart from this and the shader graph, I also implemented the full-screen global volume post-processing effect that is triggered when the player gets a perfect hit, creating a cinematic visual effect. Moreover, I made it possible for the player to adjust the offset of the gameplay, which is essential in rhythm game. It's adjusted at the menu page, and as the guidance says, negative offset means the audio to play earlier and positive offset means playing later. The note hit time are supposed to align with each 8th beat of the song. Feel free to test around! Press "P" or "Esc" to stop the gameplay at any moment; press "Z" to restart the gameplay; and press "Q" to return to the song selection menu, which allows you to again re-adjust the offset. 
+
+
 ## Milestone 4 Devlog
 Milestone 4 Devlog goes here.
 ## Final Devlog

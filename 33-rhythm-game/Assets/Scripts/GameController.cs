@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour
     public void QuitToMenu()
     {
         OnQuitGame?.Invoke();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneController.Instance.LoadScene("SelectionMenu");
     }
 }
