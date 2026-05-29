@@ -13,7 +13,8 @@ public class GameController : MonoBehaviour
     [Header("Level Data")]
     public SongData currentSong;
 
-    [Header("Player Customization")]
+    [Header("User Settings")]
+    [Tooltip("Global audio offset in seconds. Positive = audio plays later; Negative = audio plays earlier.")]
     public float offset = 0f; // Time in seconds to shift all notes (positive = later, negative = earlier)
 
     private int currentCombo = 0;
@@ -28,19 +29,18 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this);
-        }
+        Instance = this;
     }
 
     void Start()
     {
+        offset = ValueKeeper.Instance.offset;
+        currentSong = ValueKeeper.Instance.chosenSong;
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
         {
@@ -105,5 +105,6 @@ public class GameController : MonoBehaviour
     public void QuitToMenu()
     {
         OnQuitGame?.Invoke();
+        SceneController.Instance.LoadScene("SelectionMenu");
     }
 }

@@ -50,7 +50,7 @@ public class SongSelectionManager : MonoBehaviour
         if (_selectedSong != null)
         {
             // Store the selected song in the GameController singleton 
-            GameController.Instance.currentSong = _selectedSong;
+            ValueKeeper.Instance.chosenSong = _selectedSong;
             SceneController.Instance.LoadScene("GamePlayScene");
         }
     }
