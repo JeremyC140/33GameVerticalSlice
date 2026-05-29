@@ -28,11 +28,15 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != this && Instance != null) {
-            Destroy(this);
-            return;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        Instance = this;
+        else
+        {
+            Destroy(this);
+        }
     }
 
     void Start()

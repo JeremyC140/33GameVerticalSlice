@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 967c7496489640d4abcea531aae1b9ce
+guid: 3afaf6c9614a35443b273a441ecdd634
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6723097416652839356
-    second: silver-star_0
+      213: -8073398002455415718
+    second: silver_star_grok_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: silver-star_0
+      name: silver_star_grok_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
-        width: 244
-        height: 252
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb950fdda7d3d4d50800000000000000
-      internalID: 6723097416652839356
+      spriteID: a54fb4d9a4785ff80800000000000000
+      internalID: -8073398002455415718
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      silver-star_0: 6723097416652839356
+      silver_star_grok_0: -8073398002455415718
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
