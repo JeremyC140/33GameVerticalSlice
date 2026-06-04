@@ -11,13 +11,14 @@ public class NoteSpawner : MonoBehaviour
     public NoteVisual notePrefab;
 
     [Header("Timing")]
-    public float approachTime = 1.5f;
+    private float approachSpeed;
     private int _nextNoteIndex = 0;   // The pointer to the next note to spawn
     public float currentSongRealTime = 0f;
 
     private NoteData[] _tempChart;
+    private int numOfNotes = 50;
     private float songbpm;
-    private float secondsPerEightBeat;
+    private float secondsPerFourthBeat;
     private float chartOffset = 0f;
 
     void Awake()
@@ -29,21 +30,22 @@ public class NoteSpawner : MonoBehaviour
         }
         Instance = this;
     }
-    public void StartSpawning(SongData song, float offset)
+    public void StartSpawning(SongData song, float offset, float speed)
     {
         _nextNoteIndex = 0;
         currentSong = song;
         songbpm = song.songBPM;
-        secondsPerEightBeat = 60f / songbpm * 8;
+        secondsPerFourthBeat = 60f / songbpm * 4;
         chartOffset = offset;
-        currentSongRealTime = -chartOffset;
+        approachSpeed = 3.5f - speed;
+        currentSongRealTime += -chartOffset;
 
-        _tempChart = new NoteData[20];
+        _tempChart = new NoteData[numOfNotes];
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < numOfNotes; i++)
         {
             NoteData newNote = new NoteData();
-            newNote.hitTime = secondsPerEightBeat * (i + 3);
+            newNote.hitTime = secondsPerFourthBeat * (i + 3);
             newNote.laneIndex = Random.Range(0, 7);
             newNote.type = NoteType.Tap;
             _tempChart[i] = newNote;
@@ -51,8 +53,8 @@ public class NoteSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (!AudioManager.Instance.isSongPlaying || currentSong == null) return;
-        if (_nextNoteIndex >= 20) return;
+        if (!AudioManager.Instance._audioSource.isPlaying || currentSong == null) return;
+        if (_nextNoteIndex >= numOfNotes) return;
         currentSongRealTime += Time.deltaTime;
         //Debug.Log("Current Song Real Time: " + currentSongRealTime);
         //if (_nextNoteIndex < currentSong.chart.Count)
@@ -66,7 +68,7 @@ public class NoteSpawner : MonoBehaviour
         //    //}
         //}
         NoteData nextNoteData = _tempChart[_nextNoteIndex];
-        if (currentSongRealTime >= nextNoteData.hitTime - approachTime && _nextNoteIndex < 20)
+        if (currentSongRealTime >= nextNoteData.hitTime - approachSpeed && _nextNoteIndex < numOfNotes)
         {
             Debug.Log($"Prepare to spawn the {_nextNoteIndex}th note");
             SpawnNote(_tempChart[_nextNoteIndex]);
@@ -96,7 +98,7 @@ public class NoteSpawner : MonoBehaviour
 
         NoteVisual newNote = Instantiate(notePrefab, laneRef.transform.position, Quaternion.identity, laneRef.transform);
 
-        newNote.InitializeNote(note.hitTime, approachTime);
+        newNote.InitializeNote(note.hitTime, approachSpeed);
 
         laneRef.AssignNote(newNote);
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
@@ -16,8 +17,13 @@ public class GameController : MonoBehaviour
     [Header("User Settings")]
     [Tooltip("Global audio offset in seconds. Positive = audio plays later; Negative = audio plays earlier.")]
     public float offset = 0f; // Time in seconds to shift all notes (positive = later, negative = earlier)
+    public float approachSpeed = 1.5f;
 
     private int currentCombo = 0;
+    private int numPerfectHit = 0;
+    private int numGoodHit = 0;
+    private int numMissHit = 0;
+    private int numTotalHit;
 
     // --- Events ---
     public static event Action OnPauseGame;
@@ -40,18 +46,17 @@ public class GameController : MonoBehaviour
     void Start()
     {
         offset = ValueKeeper.Instance.offset;
+        approachSpeed = ValueKeeper.Instance.speed;
         currentSong = ValueKeeper.Instance.chosenSong;
+
         AudioManager audioManager = FindAnyObjectByType<AudioManager>();
         if (audioManager != null)
         {
             audioManager.PlaySong(currentSong, AudioSettings.dspTime + _gameDefaultStartTime);
             Debug.Log($"Playing song: {currentSong.songName}");
         }
-        NoteSpawner noteSpawner = FindAnyObjectByType<NoteSpawner>();
-        if (noteSpawner != null)
-        {
-            noteSpawner.StartSpawning(currentSong, offset);
-        }
+
+        StartCoroutine(DesignatedWait(_gameDefaultStartTime));
     }
 
     void Update()
@@ -68,18 +73,35 @@ public class GameController : MonoBehaviour
     }
 
     public void triggerPerfectHit() {
+        numPerfectHit++;
+        numTotalHit++;
         currentCombo++;
         CustomEvent.Trigger(visualScriptingTarget, "PerfectHit", currentCombo.ToString());
     }
     public void triggerGoodHit()
     {
+        numGoodHit++;
+        numTotalHit++;
         currentCombo++;
         CustomEvent.Trigger(visualScriptingTarget, "GoodHit", currentCombo.ToString());
     }
     public void triggerMissHit()
     {
+        numMissHit++;
+        numTotalHit++;
         currentCombo = 0;
         CustomEvent.Trigger(visualScriptingTarget, "MissHit", currentCombo.ToString());
+    }
+
+    public void HandleGameResultsAndTransition()
+    {
+        ValueKeeper.Instance.perfectCount = numPerfectHit;
+        ValueKeeper.Instance.goodCount = numGoodHit;
+        ValueKeeper.Instance.missCount = numMissHit;
+        ValueKeeper.Instance.totalCount = numTotalHit;
+        ValueKeeper.Instance.accuracy = (float)(numPerfectHit + 0.7 * numGoodHit) / numTotalHit;
+
+        SceneController.Instance.LoadScene("ResultScene");
     }
 
     public void TogglePause()
@@ -105,7 +127,16 @@ public class GameController : MonoBehaviour
     public void QuitToMenu()
     {
         OnQuitGame?.Invoke();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneController.Instance.LoadScene("SelectionMenu");
     }
-}
+
+    IEnumerator DesignatedWait(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        NoteSpawner noteSpawner = FindAnyObjectByType<NoteSpawner>();
+        if (noteSpawner != null)
+        {
+            noteSpawner.StartSpawning(currentSong, offset, approachSpeed);
+            Debug.Log("Started Note Spawner");
+        }
+    }
+}   

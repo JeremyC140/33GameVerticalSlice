@@ -5,8 +5,10 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    public bool isSongPlaying = false;
-    private AudioSource _audioSource;
+    public AudioSource _audioSource;
+
+    private double _songStartDspTime;
+    private double _songEndDspTime;
 
     [Range(0f, 1f)]
     public float musicVolume = 0.8f;
@@ -41,13 +43,26 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        isSongPlaying = _audioSource.isPlaying;
+        if (AudioSettings.dspTime >= _songEndDspTime + 4.0)
+        {
+            Debug.Log("Song ended in AudioManager");
+            EndSong();
+        }
     }
 
     public void PlaySong(SongData song, double startTime)
     {
         _audioSource.clip = song.audioFile;
+        _songStartDspTime = startTime;
+        _songEndDspTime = _songStartDspTime + (double)_audioSource.clip.length;
+
         _audioSource.PlayScheduled(startTime);
+    }
+    private void EndSong()
+    {
+        _audioSource.Stop();
+
+        GameController.Instance.HandleGameResultsAndTransition();
     }
 
     private void HandlePause()

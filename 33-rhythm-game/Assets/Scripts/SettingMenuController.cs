@@ -8,15 +8,22 @@ public class SettingMenuController : MonoBehaviour
     public Slider offsetSlider;
     public TextMeshProUGUI offsetDisplayQuantityText;
 
+    public Slider speedSlider;
+    public TextMeshProUGUI speedDisplayQuantityText;
+
     void Start()
     {
-        if (ValueKeeper.Instance != null && offsetSlider != null)
+        if (ValueKeeper.Instance != null && offsetSlider != null && speedSlider != null)
         {
             offsetSlider.value = ValueKeeper.Instance.offset;
-            UpdateTextLabel(offsetSlider.value);
+            UpdateOffsetTextLabel(offsetSlider.value);
+
+            speedSlider.value = ValueKeeper.Instance.speed;
+            UpdateSpeedTextLabel(speedSlider.value);
         }
 
         offsetSlider.onValueChanged.AddListener(HandleOffsetSliderChanged);
+        speedSlider.onValueChanged.AddListener(HandleSpeedSliderChanged);
     }
 
     private void HandleOffsetSliderChanged(float value)
@@ -24,11 +31,11 @@ public class SettingMenuController : MonoBehaviour
         if (ValueKeeper.Instance != null)
         {
             ValueKeeper.Instance.offset = value;
-            UpdateTextLabel(value);
+            UpdateOffsetTextLabel(value);
         }
     }
 
-    private void UpdateTextLabel(float value)
+    private void UpdateOffsetTextLabel(float value)
     {
         if (offsetDisplayQuantityText != null)
         {
@@ -37,6 +44,23 @@ public class SettingMenuController : MonoBehaviour
             string sign = ms >= 0 ? "+" : "";
             offsetDisplayQuantityText.text = $"{sign}{ms} ms";
             //Debug.Log($"Offset updated: {sign}{ms} ms");
+        }
+    }
+
+    private void HandleSpeedSliderChanged(float value)
+    {
+        if (ValueKeeper.Instance != null)
+        {
+            ValueKeeper.Instance.speed = value;
+            UpdateSpeedTextLabel(value);
+        }
+    }
+
+    private void UpdateSpeedTextLabel(float value)
+    {
+        if (speedDisplayQuantityText != null)
+        {
+            speedDisplayQuantityText.text = value.ToString("F2");
         }
     }
 }
