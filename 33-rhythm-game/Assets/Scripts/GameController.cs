@@ -19,6 +19,11 @@ public class GameController : MonoBehaviour
     public float offset = 0f; // Time in seconds to shift all notes (positive = later, negative = earlier)
     public float approachSpeed = 1.5f;
 
+    [Header("Audio Components")]
+    public AudioSource sfxSource;
+    public AudioClip perfectSoundEffect;
+    public AudioClip hitSoundEffect;
+
     private int currentCombo = 0;
     private int numPerfectHit = 0;
     private int numGoodHit = 0;
@@ -76,6 +81,7 @@ public class GameController : MonoBehaviour
         numPerfectHit++;
         numTotalHit++;
         currentCombo++;
+        sfxSource.PlayOneShot(perfectSoundEffect);
         CustomEvent.Trigger(visualScriptingTarget, "PerfectHit", currentCombo.ToString());
     }
     public void triggerGoodHit()
@@ -83,6 +89,7 @@ public class GameController : MonoBehaviour
         numGoodHit++;
         numTotalHit++;
         currentCombo++;
+        sfxSource.PlayOneShot(perfectSoundEffect, 0.5f);
         CustomEvent.Trigger(visualScriptingTarget, "GoodHit", currentCombo.ToString());
     }
     public void triggerMissHit()
@@ -91,6 +98,10 @@ public class GameController : MonoBehaviour
         numTotalHit++;
         currentCombo = 0;
         CustomEvent.Trigger(visualScriptingTarget, "MissHit", currentCombo.ToString());
+    }
+
+    public void playHitSoundEffect() {
+        sfxSource.PlayOneShot(hitSoundEffect);
     }
 
     public void HandleGameResultsAndTransition()

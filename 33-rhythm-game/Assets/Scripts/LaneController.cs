@@ -88,6 +88,7 @@ public class LaneController : MonoBehaviour
     {
         if (Input.GetKey(targetKey))
         {
+            //GameController.Instance.playHitSoundEffect();
             // LERP towards the PRESSED state
             Vector3 targetScale = _originalScale * pressedScaleMultiplier;
 
