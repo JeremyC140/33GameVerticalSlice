@@ -433,6 +433,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4925504547193045269, guid: 43d03a4ea09c8d9459aef9a777b49215, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925504547193045269, guid: 43d03a4ea09c8d9459aef9a777b49215, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8441224646772852045, guid: 43d03a4ea09c8d9459aef9a777b49215, type: 3}
       propertyPath: m_Name
       value: Result UI

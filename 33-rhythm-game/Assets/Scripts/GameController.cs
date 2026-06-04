@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
         ValueKeeper.Instance.goodCount = numGoodHit;
         ValueKeeper.Instance.missCount = numMissHit;
         ValueKeeper.Instance.totalCount = numTotalHit;
-        ValueKeeper.Instance.accuracy = (float)(numPerfectHit + 0.7 * numGoodHit) / numTotalHit;
+        ValueKeeper.Instance.accuracy = (float)(numPerfectHit + 0.9 * numGoodHit) / numTotalHit;
 
         SceneController.Instance.LoadScene("ResultScene");
     }

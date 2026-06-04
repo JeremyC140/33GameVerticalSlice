@@ -16,10 +16,10 @@ public class ResultMenuManager : MonoBehaviour
     public SongData selectedSong;
 
     void Start() { 
-        perfectCount.text = ValueKeeper.Instance.perfectCount.ToString();
-        goodCount.text = ValueKeeper.Instance.goodCount.ToString();
-        missCount.text = ValueKeeper.Instance.missCount.ToString();
-        accuracy.text = ValueKeeper.Instance.accuracy.ToString("F2") + "%";
+        perfectCount.text = "Perfect: " + ValueKeeper.Instance.perfectCount.ToString();
+        goodCount.text = "Good: " + ValueKeeper.Instance.goodCount.ToString();
+        missCount.text = "Miss: " + ValueKeeper.Instance.missCount.ToString();
+        accuracy.text = "Accuracy: " + (ValueKeeper.Instance.accuracy * 100).ToString("F2") + "%";
         selectedSong = ValueKeeper.Instance.chosenSong;
         songImage.sprite = selectedSong.songImage;
     }

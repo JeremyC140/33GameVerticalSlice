@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Bson;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
@@ -15,7 +16,7 @@ public class NoteSpawner : MonoBehaviour
     private int _nextNoteIndex = 0;   // The pointer to the next note to spawn
     public float currentSongRealTime = 0f;
 
-    private NoteData[] _tempChart;
+    private List<NoteData> _tempChart = new List<NoteData>();
     private int numOfNotes = 50;
     private float songbpm;
     private float secondsPerFourthBeat;
@@ -40,35 +41,55 @@ public class NoteSpawner : MonoBehaviour
         approachSpeed = 3.5f - speed;
         currentSongRealTime += -chartOffset;
 
-        _tempChart = new NoteData[numOfNotes];
-
         for (int i = 0; i < numOfNotes; i++)
         {
-            NoteData newNote = new NoteData();
-            newNote.hitTime = secondsPerFourthBeat * (i + 3);
-            newNote.laneIndex = Random.Range(0, 7);
-            newNote.type = NoteType.Tap;
-            _tempChart[i] = newNote;
+            // Calculate the target hit timing anchor for this specific beat cycle
+            double beatTime = secondsPerFourthBeat * (i + 2);
+
+            // --- NOTE 1: The Primary Base Note ---
+            NoteData primaryNote = new NoteData();
+            primaryNote.hitTime = beatTime;
+            primaryNote.laneIndex = Random.Range(0, 7); // Generates 0 through 6
+            primaryNote.type = NoteType.Tap;
+            _tempChart.Add(primaryNote);
+
+            // --- NOTE 2: The Conditional Double Note ---
+            if (i % 5 == 0 && i != 0)
+            {
+                NoteData doubleNote = new NoteData();
+                doubleNote.hitTime = beatTime; // Shares the exact same timing layout grid array
+                doubleNote.type = NoteType.Tap;
+
+                // Loop to find a lane index that does not match the primary note's lane
+                int alternateLane;
+                do
+                {
+                    alternateLane = Random.Range(0, 7);
+                }
+                while (alternateLane == primaryNote.laneIndex);
+
+                doubleNote.laneIndex = alternateLane;
+                _tempChart.Add(doubleNote);
+            }
         }
+
+        //_tempChart = new NoteData[numOfNotes];
+        //for (int i = 0; i < numOfNotes; i++)
+        //{
+        //    NoteData newNote = new NoteData();
+        //    newNote.hitTime = secondsPerFourthBeat * (i + 3);
+        //    newNote.laneIndex = Random.Range(0, 7);
+        //    newNote.type = NoteType.Tap;
+        //    _tempChart[i] = newNote;
+        //}
     }
     void Update()
     {
         if (!AudioManager.Instance._audioSource.isPlaying || currentSong == null) return;
-        if (_nextNoteIndex >= numOfNotes) return;
+        if (_nextNoteIndex >= _tempChart.Count) return;
         currentSongRealTime += Time.deltaTime;
-        //Debug.Log("Current Song Real Time: " + currentSongRealTime);
-        //if (_nextNoteIndex < currentSong.chart.Count)
-        //{
-        //    NoteData nextNoteData = currentSong.chart[_nextNoteIndex];
-
-        //    //if (currentSongRealTime >= (nextNoteData.hitTime - approachTime))
-        //    //{
-        //    //    SpawnNote(nextNoteData);
-        //    //    _nextNoteIndex++;
-        //    //}
-        //}
         NoteData nextNoteData = _tempChart[_nextNoteIndex];
-        if (currentSongRealTime >= nextNoteData.hitTime - approachSpeed && _nextNoteIndex < numOfNotes)
+        if (currentSongRealTime >= nextNoteData.hitTime - approachSpeed)
         {
             Debug.Log($"Prepare to spawn the {_nextNoteIndex}th note");
             SpawnNote(_tempChart[_nextNoteIndex]);
