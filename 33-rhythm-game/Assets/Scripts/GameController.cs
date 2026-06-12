@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
         numPerfectHit++;
         numTotalHit++;
         currentCombo++;
-        sfxSource.PlayOneShot(perfectSoundEffect);
+        sfxSource.PlayOneShot(perfectSoundEffect, 2f);
         CustomEvent.Trigger(visualScriptingTarget, "PerfectHit", currentCombo.ToString());
     }
     public void triggerGoodHit()
@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
         numGoodHit++;
         numTotalHit++;
         currentCombo++;
-        sfxSource.PlayOneShot(perfectSoundEffect, 0.5f);
+        sfxSource.PlayOneShot(perfectSoundEffect, 1f);
         CustomEvent.Trigger(visualScriptingTarget, "GoodHit", currentCombo.ToString());
     }
     public void triggerMissHit()
@@ -133,12 +133,14 @@ public class GameController : MonoBehaviour
     {
         OnRestartGame?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _isPaused = false;
     }
 
     public void QuitToMenu()
     {
         OnQuitGame?.Invoke();
         SceneController.Instance.LoadScene("SelectionMenu");
+        _isPaused = false;
     }
 
     IEnumerator DesignatedWait(float waitTime) {

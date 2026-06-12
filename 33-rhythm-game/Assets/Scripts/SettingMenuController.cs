@@ -15,7 +15,7 @@ public class SettingMenuController : MonoBehaviour
     {
         if (ValueKeeper.Instance != null && offsetSlider != null && speedSlider != null)
         {
-            offsetSlider.value = ValueKeeper.Instance.offset;
+            offsetSlider.value = ValueKeeper.Instance.offset * 1000f;
             UpdateOffsetTextLabel(offsetSlider.value);
 
             speedSlider.value = ValueKeeper.Instance.speed;
@@ -30,7 +30,7 @@ public class SettingMenuController : MonoBehaviour
     {
         if (ValueKeeper.Instance != null)
         {
-            ValueKeeper.Instance.offset = value;
+            ValueKeeper.Instance.offset = value / 1000f;
             UpdateOffsetTextLabel(value);
         }
     }

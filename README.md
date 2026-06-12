@@ -75,12 +75,25 @@ Since my rhythm game mechanics is quite unique, I still didn't give up working o
 Apart from this and the shader graph, I also implemented the full-screen global volume post-processing effect that is triggered when the player gets a perfect hit, creating a cinematic visual effect. Moreover, I made it possible for the player to adjust the offset of the gameplay, which is essential in rhythm game. It's adjusted at the menu page, and as the guidance says, negative offset means the audio to play earlier and positive offset means playing later. The note hit time are supposed to align with each 8th beat of the song. Feel free to test around! Press "P" or "Esc" to stop the gameplay at any moment; press "Z" to restart the gameplay; and press "Q" to return to the song selection menu, which allows you to again re-adjust the offset. 
 
 
-## Milestone 4 Devlog
-Milestone 4 Devlog goes here.
 ## Final Devlog
-Final Devlog goes here.
+1. 
+Briefly describe your core gameplay loop and the content we can find in your game. Then, relate the gameplay and content you implemented back to your original plan for creating a Vertical Slice: how does this gameplay and content illustrate to the player what the full game would be like?
+
+2. 
+In about a paragraph, describe how your rendering effect is activated from gameplay logic. Either attach a screenshot of the relevant Graph OR cite the relevant C# file(s) so we can find them in your repo. Accurately describe your system with technical terms.
+
+3. 
+Describe your process for how you break down a large project into specific systems. If you don't have a process that works well for you right now, you must come up with an describe a viable plan.
+- Make sure to also answer ALL of these questions in your answer:
+    Do you plan on using either the bubble diagram break-downs and/or the task step break-downs we practiced this quarter in your planning process? Why or why not?
+    How does the process of breaking down a large project into small steps affect your understanding of the scope of the project?
+    How does the plan you're describing relate to your process of creating the Vertical Slice project? You can write about either how things went poorly and how you'd improve your process as a result, or about how things went well that you want to repeat.
+
+
 ## Open-source assets
 - [Starla Font from DaFont](https://www.dafont.com/starla.font)
-- [Song Metadata and Images - Infinite Heaven](https://arcaea.fandom.com/wiki/Infinity_Heaven)
+- [Original Image of Star from Pinterest](https://www.pinterest.com/pin/872924340292062438/)
+- [Songtrack - Infinity Heaven from Hyun](https://youtu.be/MPucvvz_fvE?si=3PKN9MxwW09mzjby)
+- [Song Metadata and Images - Infinity Heaven](https://arcaea.fandom.com/wiki/Infinity_Heaven)
 - [Song Metadata and Images - Tempestissmo](https://arcaea.fandom.com/wiki/Tempestissimo)
 - [Song Metadata and Images - Aegleseeker](https://arcaea.fandom.com/wiki/Aegleseeker)
