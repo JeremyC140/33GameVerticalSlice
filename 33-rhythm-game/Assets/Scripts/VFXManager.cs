@@ -26,7 +26,6 @@ public class VFXManager : MonoBehaviour
 
     private void Start()
     {
-        // Reach into the Volume Profile and extract the specific overrides to tweak
         if (globalVolume.profile.TryGet(out _chromatic))
         {
             _chromatic.intensity.value = 0f;
@@ -51,8 +50,6 @@ public class VFXManager : MonoBehaviour
             _colorAdjustments.postExposure.value = Mathf.Lerp(_colorAdjustments.postExposure.value, 0f, Time.deltaTime * recoverySpeed);
         }
     }
-
-    // Call this from your LaneController when a Perfect hit occurs!
     public void TriggerPerfectFlash()
     {
         if (_chromatic != null) _chromatic.intensity.value = flashChromatic;

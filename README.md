@@ -77,18 +77,25 @@ Apart from this and the shader graph, I also implemented the full-screen global 
 
 ## Final Devlog
 1. 
-Briefly describe your core gameplay loop and the content we can find in your game. Then, relate the gameplay and content you implemented back to your original plan for creating a Vertical Slice: how does this gameplay and content illustrate to the player what the full game would be like?
+The core gameplay loop is implemented completely as I illustrated in my breakdown chart: player begins from the song selection scene, chooses a song to play (currently only "Infinity Heaven" is playable; the other two songs from the menu are view-only), enters the gameplay, and finishes the gameplay with the judgment result scene displaying player's performance. The game chart "Infinity Heaven" has a length of 1m 30s and will have golden stars approaching at the lanes for player to "hit" them. Player should click the keyboard corresponds with that lane when the golden star right at the timing when it grows and spins completely. Supposedly, the hitting time should be every fourth beat of the song (if it feels off, try adjusting the offset!). The vertical slice is mainly displaying the main mechanics, or the "rhythm game" part of this game. For future content, the game will have more and more playable songs, more features, and more note type (more than tapping the keyboard?!). 
 
 2. 
-In about a paragraph, describe how your rendering effect is activated from gameplay logic. Either attach a screenshot of the relevant Graph OR cite the relevant C# file(s) so we can find them in your repo. Accurately describe your system with technical terms.
+The rendering effect that is triggered during gameplay is the cinematic exposure screen effect activated when player hits a perfect. The effect is architected in the c# script VFXManager. In the script, the method TriggerPerfectFlash is used to set the intensity of Chromatic Aberration and Post Exposure in the Global Volume GameObject to achieve the cinematic flash screen display. The Update method in this script is used to lerp these value back to zero. As a result, by calling the TriggerPerfectFlash in GameController whenever a perfect hit is detected, the screen will display the full-screen post-processing effect of the cinematic flash, and the flash will fade / lerp out on its own. 
 
 3. 
-Describe your process for how you break down a large project into specific systems. If you don't have a process that works well for you right now, you must come up with an describe a viable plan.
-- Make sure to also answer ALL of these questions in your answer:
-    Do you plan on using either the bubble diagram break-downs and/or the task step break-downs we practiced this quarter in your planning process? Why or why not?
-    How does the process of breaking down a large project into small steps affect your understanding of the scope of the project?
-    How does the plan you're describing relate to your process of creating the Vertical Slice project? You can write about either how things went poorly and how you'd improve your process as a result, or about how things went well that you want to repeat.
+Personally, I am very into the process of breaking down a large project into specific systems and steps, as it helps me maintain a clear direction during development and also rescues me from procrastination and discouragement. Here's the plan I've followed when crafting this vertical slice: 
 
+- Step 1: Brainstorming!
+I think it's always essential to gather enough thoughts, ideas, and catches before starting a project. I found the moodboard we created at the very start of this class to be helpful in igniting my imagination and innovation. Jugging down all the cool ideas in mind and then find connections between them is definitely helpful for me when doing a creative project. 
+
+- Step 2: Breaking Down the Core Mechanics
+To start building the game, drawing the breakdown chart specifically for the core mechanics help a lot in concentrating my thought and direction. From the experience of creating minigames in 31, 32, and to this quarter-long project in 33, I am more persuaded to actually go beyond "planning in head" and actually draw out the breakdown chart. By reviewing the breakdown chart during the development process, it keeps my head clear about what to work on next, and which systems are more priortized in producing. 
+
+- Step 3: Spliting Big Step into Small Steps
+For me, this step doesn't necessary have to be a "plan ahead", but could happen only after I start working on that big step. However, it's still helpful for me to map out the small, achievable steps as to-do list during the process of production. By taking time to think through the next process in head and writing it out, it not only help making the goal visible and achivable, it also helps my problem of procrastination because the reason for procrastination is usually that the goal looks to far-away and exhausted to be done. This to-do list style practice helps me to concentrate better on working and gives me sense of accomplishment as works went on. 
+
+- Step 4: Refine the Breakdown Chart
+I found it nice to iteratively refine the breakdown chart during development. The breakdown chart is more than the pre-planning, but it is the architecture of the whole system and game that I'm visualing and working toward. For example, when developing my rhythm game, I actually have numerous instance of making the breakdown chart more concise, such as the time where I integrate all of the effects and performance of notes into a single system rather than overly spliting them; and there's also time where I have to breakdown a system furthermore because I didn't realize its complicatedness once I started working on it. As a result, refining this north-star chart has been helpful for me in navigating my project and progress. 
 
 ## Open-source assets
 - [Starla Font from DaFont](https://www.dafont.com/starla.font)
